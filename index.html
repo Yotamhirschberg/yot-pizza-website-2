@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#f6f1e8" />
+  <meta name="theme-color" content="#101012" />
 
   <title>Yot Pizza | אבן. אש. בצק</title>
   <meta name="description" content="Yot Pizza — יותם שף פרטי לאירועי בוטיק וסדנאות איטלקיות. אבן. אש. בצק." />
@@ -15,20 +15,22 @@
 
   <style>
     :root{
-      --bg:#f6f1e8;          /* cream */
-      --paper:#ffffff;
-      --ink:#141216;
-      --muted:#5d5a63;
+      --bg:#101012;
+      --bg2:#141416;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.04);
+      --text:#f5f5f7;
+      --muted: rgba(245,245,247,.72);
+      --line: rgba(255,255,255,.12);
 
-      --tomato:#d73b2e;      /* fire */
-      --olive:#2f6b4f;       /* italian green */
-      --wheat:#f0c778;       /* dough */
-      --stone:#d9d3c8;
+      --fire:#ff4d2f;
+      --dough:#f1c475;
+      --leaf:#3ddc97;
+      --stone:#d7d2c8;
 
-      --line:rgba(20,18,22,.10);
-      --shadow: 0 22px 60px rgba(20,18,22,.12);
       --radius: 22px;
       --max: 1120px;
+      --shadow: 0 28px 90px rgba(0,0,0,.45);
     }
 
     *{box-sizing:border-box}
@@ -36,250 +38,302 @@
     body{
       margin:0;
       font-family:'Heebo',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-      color:var(--ink);
+      color:var(--text);
       background:
-        radial-gradient(900px 520px at 15% 10%, rgba(215,59,46,.12), transparent 60%),
-        radial-gradient(900px 520px at 85% 15%, rgba(47,107,79,.10), transparent 60%),
-        radial-gradient(900px 520px at 60% 95%, rgba(240,199,120,.14), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 520px at 18% 10%, rgba(255,77,47,.14), transparent 60%),
+        radial-gradient(900px 520px at 82% 15%, rgba(61,220,151,.10), transparent 60%),
+        radial-gradient(900px 520px at 55% 95%, rgba(241,196,117,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-
     a{color:inherit; text-decoration:none}
     p{margin:0 0 14px; line-height:1.75; color:var(--muted)}
-    h1,h2{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px; letter-spacing:.2px}
-    img{display:block; max-width:100%; height:auto}
+    h1,h2{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px}
+    img{max-width:100%; height:auto; display:block}
 
-    :focus-visible{outline:3px solid rgba(215,59,46,.25); outline-offset:3px; border-radius:14px}
+    :focus-visible{outline:3px solid rgba(255,77,47,.35); outline-offset:3px; border-radius:14px}
 
     .container{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .section{padding:68px 0}
+    .section{padding:64px 0}
 
-    /* Top */
+    /* Top bar */
     .top{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(246,241,232,.75);
-      backdrop-filter: blur(10px) saturate(120%);
+      position:sticky; top:0; z-index:1200;
+      background:rgba(16,16,18,.62);
+      backdrop-filter: blur(12px) saturate(120%);
       border-bottom:1px solid var(--line);
     }
-    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900}
-    .stamp{
-      width:40px;height:40px;border-radius:16px;
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+    .mark{
+      width:40px; height:40px; border-radius:14px;
       background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.75), transparent 60%),
-        linear-gradient(135deg,var(--tomato),var(--wheat));
-      box-shadow:0 12px 30px rgba(215,59,46,.18);
+        radial-gradient(18px 18px at 28% 30%, rgba(255,255,255,.28), transparent 55%),
+        linear-gradient(135deg, rgba(255,77,47,.95), rgba(241,196,117,.92));
+      box-shadow: 0 18px 40px rgba(255,77,47,.18);
     }
-    .nav{display:flex; gap:10px; flex-wrap:wrap}
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
     .nav a{
-      font-weight:800; font-size:.95rem;
-      padding:8px 10px; border-radius:999px;
+      padding:8px 10px;
+      border-radius:999px;
       border:1px solid transparent;
+      color:rgba(245,245,247,.88);
+      font-weight:800;
+      font-size:.95rem;
     }
-    .nav a:hover{border-color:var(--line); background:rgba(255,255,255,.55)}
+    .nav a:hover{border-color:var(--line); background:rgba(255,255,255,.05)}
 
-    /* Hero (split layout) */
-    .hero{padding:28px 0 0}
-    .hero-grid{
+    /* Hero (single column, big image) */
+    .hero{padding:28px 0 12px}
+    .hero-wrap{
+      position:relative;
+      border-radius:calc(var(--radius) + 10px);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      background:rgba(255,255,255,.03);
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(16,16,18,.90), rgba(16,16,18,.35) 55%, rgba(16,16,18,.92)),
+        url("hero-bg.jpg") center/cover no-repeat;
+      transform:scale(1.03);
+      filter:saturate(1.05) contrast(1.04);
+    }
+    .hero-inner{
+      position:relative;
+      padding:64px 22px 22px;
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1fr; /* SINGLE COLUMN */
       gap:18px;
       align-items:stretch;
     }
-    .hero-copy{
-      background:rgba(255,255,255,.72);
-      border:1px solid var(--line);
-      border-radius:calc(var(--radius) + 6px);
-      box-shadow:var(--shadow);
-      padding:26px;
-      position:relative;
-      overflow:hidden;
-    }
-    .ribbon{
-      position:absolute; inset:auto -90px -90px auto;
-      width:220px; height:220px;
-      background: radial-gradient(circle at 40% 40%, rgba(47,107,79,.22), transparent 60%);
-      transform: rotate(12deg);
-      pointer-events:none;
-    }
     .pill{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:8px 12px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 14px;
       border-radius:999px;
-      border:1px dashed rgba(20,18,22,.22);
-      background:rgba(255,255,255,.5);
-      font-weight:900;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      color:rgba(245,245,247,.92);
+      font-weight:1000;
       width:max-content;
-      margin-bottom:14px;
+      margin-bottom:12px;
     }
-    .pill b:nth-child(1){color:var(--olive)}
-    .pill b:nth-child(2){color:var(--tomato)}
-    .pill b:nth-child(3){color:var(--wheat)}
+    .dot{width:7px; height:7px; border-radius:999px; background:var(--fire); box-shadow:0 0 0 6px rgba(255,77,47,.14)}
     .hero h1{
-      font-size:clamp(2.1rem,4.5vw,3.6rem);
+      font-size:clamp(2.2rem,4.8vw,4.1rem);
       line-height:1.08;
       margin-bottom:10px;
+      color:#fff;
+      text-shadow: 0 22px 60px rgba(0,0,0,.55);
     }
-    .lead{font-size:clamp(1.05rem,2vw,1.2rem); color:rgba(20,18,22,.78); max-width:55ch}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center}
-
+    .hero .lead{
+      font-size:clamp(1.05rem,2.1vw,1.25rem);
+      max-width:60ch;
+      color:rgba(245,245,247,.88);
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:14px;
+      align-items:center;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px;
+      padding:12px 18px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.75);
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.07);
+      color:#fff;
       font-weight:1000;
       cursor:pointer;
-      transition: transform .18s, box-shadow .18s, background .18s;
+      transition: transform .18s, background .18s, border-color .18s, filter .18s;
       white-space:nowrap;
     }
-    .btn:hover{transform:translateY(-2px); background:#fff; box-shadow:0 14px 30px rgba(20,18,22,.12)}
+    .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.24)}
     .btn-fire{
-      background:linear-gradient(135deg,var(--tomato),var(--wheat));
-      border-color:transparent;
-      color:#151316;
+      background: linear-gradient(135deg, rgba(255,77,47,.98), rgba(241,196,117,.92));
+      border-color: transparent;
+      box-shadow: 0 18px 45px rgba(255,77,47,.20);
+      color:#101012;
     }
+    .btn-fire:hover{filter:saturate(1.05)}
     .btn-insta{
       background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
       border-color:transparent;
-      color:#fff;
+      box-shadow:0 18px 45px rgba(0,0,0,.35);
     }
 
-    .hero-image{
-      border-radius:calc(var(--radius) + 6px);
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      position:relative;
-      min-height:340px;
-      background:#ddd;
+    .hero-bottom{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
     }
-    .hero-image::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(0deg, rgba(20,18,22,.55), rgba(20,18,22,.08) 55%),
-        url("hero-bg.jpg") center/cover no-repeat;
-      transform:scale(1.02);
-    }
-    .hero-image .overlay{
-      position:absolute; inset:auto 16px 16px 16px;
-      color:#fff;
-      background:rgba(20,18,22,.42);
-      border:1px solid rgba(255,255,255,.18);
+    .stat{
+      border:1px solid rgba(255,255,255,.14);
       border-radius:18px;
+      background:rgba(16,16,18,.45);
       padding:14px;
-      backdrop-filter: blur(8px);
     }
-    .overlay .k{font-weight:1000}
-    .overlay small{opacity:.9}
-
-    /* Diagonal separators */
-    .slash{
-      height:56px;
-      background:linear-gradient(90deg, rgba(215,59,46,.16), rgba(47,107,79,.14), rgba(240,199,120,.18));
-      clip-path: polygon(0 0, 100% 14%, 100% 100%, 0 86%);
-      margin-top:26px;
-      border-top:1px solid rgba(20,18,22,.06);
-      border-bottom:1px solid rgba(20,18,22,.06);
+    .stat b{color:#fff}
+    .triple{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
     }
+    .chip{
+      border-radius:999px;
+      padding:10px 12px;
+      text-align:center;
+      font-weight:1000;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(245,245,247,.92);
+    }
+    .chip span{display:block; font-weight:800; font-size:.92rem; color:rgba(245,245,247,.80)}
+    .chip .big{font-family:'Rubik'; font-size:1.05rem; color:#fff}
+    .chip.stone .big{color:var(--stone)}
+    .chip.fire  .big{color:var(--fire)}
+    .chip.dough .big{color:var(--dough)}
 
-    /* Cards */
+    /* Card */
     .card{
-      background:rgba(255,255,255,.75);
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      background: var(--card);
+      box-shadow: 0 24px 70px rgba(0,0,0,.35);
       overflow:hidden;
     }
     .card-inner{padding:26px}
-
     .title{
       display:flex; align-items:center; gap:12px;
       margin-bottom:10px;
     }
-    .icon{
-      width:42px;height:42px;border-radius:16px;
-      display:grid;place-items:center;
-      background:rgba(255,255,255,.75);
-      border:1px solid var(--line);
+    .badge{
+      width:38px; height:38px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
     }
+    .badge i{color:#fff; opacity:.92}
 
     /* About */
     .about{
       display:grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap:22px;
-      align-items:center;
-    }
-    .portrait{
-      border-radius:26px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:0 24px 70px rgba(20,18,22,.12);
-      position:relative;
-    }
-    .portrait img{width:100%; height:430px; object-fit:cover}
-    .portrait::after{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(0deg, rgba(20,18,22,.28), transparent 45%);
-      pointer-events:none;
-    }
-
-    /* Gallery as real grid (not strip) */
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1fr; /* SINGLE COLUMN */
       gap:18px;
       align-items:start;
     }
-    .gallery-grid{
+    .photo{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+      position:relative;
+    }
+    .photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(0deg, rgba(16,16,18,.62), transparent 48%);
+      pointer-events:none;
+    }
+    .photo img{
+      width:100%;
+      height:min(560px, 70vh);
+      object-fit:cover;
+    }
+
+    /* ONE COLUMN layout for sections */
+    .stack{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    /* Masonry Gallery (big, gives volume) */
+    .gallery-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
       gap:12px;
+      margin-bottom:10px;
+    }
+    .gallery-note{
+      margin:0;
+      color:rgba(245,245,247,.65);
+      font-size:.95rem;
+    }
+
+    .gallery-masonry{
+      column-count: 3;
+      column-gap: 14px;
+      margin-top: 10px;
     }
     .thumb{
-      border-radius:18px;
+      break-inside: avoid;
+      margin: 0 0 14px;
+      border-radius: 18px;
       overflow:hidden;
-      border:1px solid var(--line);
-      background:#f0ede6;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
       cursor:pointer;
+      box-shadow:0 18px 52px rgba(0,0,0,.35);
+      transition: transform .18s, filter .18s;
       position:relative;
-      transition: transform .18s, box-shadow .18s;
-      box-shadow:0 14px 34px rgba(20,18,22,.10);
     }
-    .thumb:hover{transform:translateY(-3px); box-shadow:0 20px 44px rgba(20,18,22,.14)}
-    .thumb img{width:100%; height:160px; object-fit:cover}
+    .thumb:hover{transform:translateY(-3px); filter:saturate(1.05)}
+    .thumb img{
+      width:100%;
+      height:auto; /* IMPORTANT: natural height => volume */
+      display:block;
+    }
     .thumb::after{
       content:"";
       position:absolute; inset:0;
-      background: radial-gradient(300px 140px at 50% 120%, rgba(20,18,22,.30), transparent 55%);
+      background: radial-gradient(600px 220px at 50% 120%, rgba(0,0,0,.45), transparent 60%);
       pointer-events:none;
     }
 
-    .cta{margin-top:14px; display:flex}
+    /* CTA row at end of each section */
+    .cta{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-start;
+    }
 
     /* WhatsApp floating (single) */
     .wa-float{
       position:fixed;
       bottom:22px;
       left:22px;
-      z-index:2000;
+      z-index:2200;
     }
     .wa-float a{
       display:inline-flex; align-items:center; gap:10px;
       background:#25D366;
-      color:#111;
+      color:#0b0b0c;
       padding:14px 16px;
       border-radius:999px;
       font-weight:1000;
-      box-shadow:0 16px 40px rgba(20,18,22,.18);
-      border:1px solid rgba(255,255,255,.35);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.15);
+      transition: transform .18s, filter .18s;
     }
-    .wa-float a:hover{transform:scale(1.03)}
+    .wa-float a:hover{transform:scale(1.03); filter:saturate(1.05)}
     .wa-float i{font-size:1.35rem}
 
     /* Lightbox with navigation */
@@ -309,8 +363,10 @@
       background:#111;
     }
     .lb-close{
-      position:absolute; top:-8px; right:-8px;
-      width:44px; height:44px; border-radius:999px;
+      position:absolute;
+      top:-8px; right:-8px;
+      width:44px; height:44px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.10);
       color:#fff;
@@ -318,10 +374,13 @@
       cursor:pointer;
       backdrop-filter: blur(10px);
     }
+    .lb-close:hover{background:rgba(255,255,255,.16)}
     .lb-nav{
       position:absolute;
-      top:50%; transform:translateY(-50%);
-      width:48px; height:48px; border-radius:999px;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px; height:48px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.10);
       color:#fff;
@@ -329,51 +388,58 @@
       cursor:pointer;
       backdrop-filter: blur(10px);
     }
+    .lb-nav:hover{background:rgba(255,255,255,.16)}
     .lb-prev{left:-6px}
     .lb-next{right:-6px}
     .lb-cap{
       position:absolute;
-      bottom:-6px; left:0; right:0;
-      display:flex; justify-content:space-between; gap:10px;
+      bottom:-8px;
+      left:0; right:0;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
       padding:10px 12px;
       font-weight:900;
-      color:rgba(244,244,245,.92);
+      color:rgba(245,245,247,.92);
+      font-size:.95rem;
     }
-    .lb-cap small{opacity:.75; font-weight:800}
+    .lb-cap small{opacity:.7; font-weight:800}
 
     footer{
-      border-top:1px solid rgba(20,18,22,.08);
-      padding:34px 0;
+      border-top:1px solid rgba(255,255,255,.12);
+      padding:36px 0;
+      color:rgba(245,245,247,.85);
       text-align:center;
-      color:rgba(20,18,22,.75);
     }
+    footer .small{opacity:.6; font-size:.9rem}
 
     /* Responsive */
     @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .about{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      .portrait img{height:360px}
-      .gallery-grid{grid-template-columns: repeat(2, 1fr)}
+      .hero-bottom{grid-template-columns:1fr}
+      .triple{grid-template-columns:1fr}
+      .gallery-masonry{column-count:2}
+      .photo img{height: 420px}
     }
     @media (max-width: 560px){
       .nav{display:none}
       .wa-float a span{display:none}
       .wa-float a{padding:14px; border-radius:50%}
-      .gallery-grid{grid-template-columns: repeat(2, 1fr)}
-      .thumb img{height:150px}
+      .gallery-masonry{column-count:1}
       .lb-prev{left:6px}
       .lb-next{right:6px}
     }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto}
-      .btn, .thumb{transition:none}
-      .btn:hover, .thumb:hover{transform:none}
+      .btn, .thumb, .wa-float a{transition:none}
+      .btn:hover, .thumb:hover, .wa-float a:hover{transform:none; filter:none}
     }
   </style>
 </head>
 
 <body>
+  <!-- BUILD MARKER (to verify page source) -->
+  <!-- BUILD: 2025-12-15 SINGLE-COLUMN + MASONRY -->
+
   <!-- Single floating WhatsApp -->
   <div class="wa-float">
     <a href="https://wa.me/972559952451" target="_blank" rel="noopener" aria-label="דברו איתי בוואטסאפ">
@@ -386,7 +452,7 @@
     <div class="container">
       <div class="topbar">
         <a class="brand" href="#top" aria-label="Yot Pizza">
-          <span class="stamp" aria-hidden="true"></span>
+          <span class="mark" aria-hidden="true"></span>
           <span>Yot Pizza</span>
         </a>
         <nav class="nav" aria-label="תפריט">
@@ -399,54 +465,70 @@
     </div>
   </header>
 
-  <main id="top" class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <section class="hero-copy">
-          <div class="ribbon" aria-hidden="true"></div>
-          <div class="pill">
-            <b>אבן</b> • <b>אש</b> • <b>בצק</b>
-          </div>
-          <h1>חוויה איטלקית שמרגישים בבית</h1>
-          <p class="lead">
-            אני יותם — שף פרטי לאירועי בוטיק וסדנאות איטלקיות. אוכל אמיתי, דיוק בפרטים, ואנרגיה שמרימה את כל השולחן.
-          </p>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-bg" aria-hidden="true"></div>
 
-          <div class="cta-row">
-            <a class="btn btn-fire" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
-            <a class="btn" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
-            <!-- one prominent Instagram -->
-            <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
-              <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
-            </a>
-          </div>
-        </section>
+          <div class="hero-inner">
+            <div>
+              <div class="pill"><span class="dot" aria-hidden="true"></span> אבן. אש. בצק</div>
+              <h1>חוויה איטלקית. בוטיק. אצלכם בבית.</h1>
+              <p class="lead">אני יותם — שף פרטי לאירועים וסדנאות איטלקיות. אוכל אמיתי, שירות חד, ואווירה שמרימה את כל השולחן.</p>
 
-        <aside class="hero-image" aria-label="תמונת פתיח">
-          <div class="overlay">
-            <div class="k">ערב שמחבר אנשים דרך טעם</div>
-            <small>חומרי גלם • טאבון • שירות מוקפד</small>
+              <div class="cta-row">
+                <a class="btn btn-fire" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
+                <a class="btn" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
+                <!-- One prominent Instagram link -->
+                <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
+                  <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-bottom">
+              <div class="stat">
+                <p style="margin:0;color:rgba(245,245,247,.88)">
+                  <b>מה מקבלים בפועל?</b><br/>
+                  ערב שמרגיש כמו חופשה: בצק בידיים, טאבון לוהט, ומנות שמגיעות לשולחן בדיוק בזמן.
+                </p>
+                <div class="triple" aria-label="אבן אש בצק">
+                  <div class="chip stone"><div class="big">אבן</div><span>דיוק וחומר גלם</span></div>
+                  <div class="chip fire"><div class="big">אש</div><span>חום, קצב, אנרגיה</span></div>
+                  <div class="chip dough"><div class="big">בצק</div><span>טכניקה וחוויה</span></div>
+                </div>
+              </div>
+
+              <div class="stat">
+                <p style="margin:0;color:rgba(245,245,247,.88)">
+                  <b>איך סוגרים?</b><br/>
+                  שולחים הודעה קצרה בוואטסאפ עם תאריך, כמות אנשים ומה בא לכם — ואני חוזר עם הצעה.
+                </p>
+              </div>
+            </div>
+
           </div>
-        </aside>
+        </div>
       </div>
-
-      <div class="slash" aria-hidden="true"></div>
-    </div>
+    </section>
 
     <!-- ABOUT -->
     <section id="about" class="section">
       <div class="container">
         <div class="card">
           <div class="card-inner about">
-            <div class="portrait">
-              <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async" />
+            <div class="photo">
+              <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async">
             </div>
+
             <div>
               <div class="title">
-                <div class="icon"><i class="fas fa-leaf" aria-hidden="true" style="color:var(--olive)"></i></div>
+                <div class="badge"><i class="fas fa-leaf" aria-hidden="true" style="color:var(--leaf)"></i></div>
                 <h2>נעים להכיר, יותם</h2>
               </div>
-              <p style="color:rgba(20,18,22,.82)">
+              <p style="color:rgba(245,245,247,.90)">
                 התשוקה שלי היא לחבר בין אנשים דרך אוכל איטלקי אמיתי. המטבח עבורי הוא לא רק מקום עבודה,
                 אלא מגרש משחקים של טעמים, ריחות וזכרונות.
               </p>
@@ -461,6 +543,7 @@
                 </a>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -469,14 +552,14 @@
     <!-- EVENTS -->
     <section id="events" class="section" style="padding-top:0">
       <div class="container">
-        <div class="grid-2">
+        <div class="stack">
           <div class="card">
             <div class="card-inner">
               <div class="title">
-                <div class="icon"><i class="fas fa-utensils" aria-hidden="true" style="color:var(--tomato)"></i></div>
+                <div class="badge"><i class="fas fa-utensils" aria-hidden="true" style="color:var(--fire)"></i></div>
                 <h2>אירועי שף פרטיים</h2>
               </div>
-              <p style="color:rgba(20,18,22,.82)">
+              <p style="color:rgba(245,245,247,.90)">
                 אני מביא את האותנטיות של איטליה ישירות אליכם, בלי פילטרים.
                 עם חומרי הגלם הכי טריים שיש, טאבון לוהט וצוות שבא לעבוד עם הנשמה —
                 אנחנו נרים לכם אירוע מטורף.
@@ -496,23 +579,24 @@
 
           <div class="card">
             <div class="card-inner">
-              <div class="title" style="margin-bottom:6px">
-                <div class="icon"><i class="fas fa-images" aria-hidden="true"></i></div>
-                <h2 style="margin:0">תמונות מהאירועים</h2>
+              <div class="gallery-head">
+                <div class="title" style="margin:0">
+                  <div class="badge"><i class="fas fa-images" aria-hidden="true"></i></div>
+                  <h2 style="margin:0">תמונות מהאירועים</h2>
+                </div>
+                <p class="gallery-note">לחצו למסך מלא • דפדוף עם חצים/סווייפ</p>
               </div>
-              <p style="margin:0 0 12px;color:rgba(20,18,22,.68)">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
 
-              <div class="gallery-grid" aria-label="גלריית אירועים">
-                <!-- event1..event15 -->
-                <div class="thumb" data-group="events" data-index="0"><img src="event1.jpg" alt="אירוע 1" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="1"><img src="event2.jpg" alt="אירוע 2" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="2"><img src="event3.jpg" alt="אירוע 3" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="3"><img src="event4.jpg" alt="אירוע 4" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="4"><img src="event5.jpg" alt="אירוע 5" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="5"><img src="event6.jpg" alt="אירוע 6" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="6"><img src="event7.jpg" alt="אירוע 7" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="7"><img src="event8.jpg" alt="אירוע 8" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="events" data-index="8"><img src="event9.jpg" alt="אירוע 9" loading="lazy" decoding="async"></div>
+              <div class="gallery-masonry" aria-label="גלריית אירועים">
+                <div class="thumb" data-group="events" data-index="0"><img src="event1.jpg"  alt="אירוע 1"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="1"><img src="event2.jpg"  alt="אירוע 2"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="2"><img src="event3.jpg"  alt="אירוע 3"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="3"><img src="event4.jpg"  alt="אירוע 4"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="4"><img src="event5.jpg"  alt="אירוע 5"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="5"><img src="event6.jpg"  alt="אירוע 6"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="6"><img src="event7.jpg"  alt="אירוע 7"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="7"><img src="event8.jpg"  alt="אירוע 8"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="8"><img src="event9.jpg"  alt="אירוע 9"  loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="events" data-index="9"><img src="event10.jpg" alt="אירוע 10" loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="events" data-index="10"><img src="event11.jpg" alt="אירוע 11" loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="events" data-index="11"><img src="event12.jpg" alt="אירוע 12" loading="lazy" decoding="async"></div>
@@ -522,6 +606,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -529,14 +614,14 @@
     <!-- WORKSHOPS -->
     <section id="workshops" class="section" style="padding-top:0">
       <div class="container">
-        <div class="grid-2">
+        <div class="stack">
           <div class="card">
             <div class="card-inner">
               <div class="title">
-                <div class="icon"><i class="fas fa-pizza-slice" aria-hidden="true" style="color:var(--olive)"></i></div>
+                <div class="badge"><i class="fas fa-pizza-slice" aria-hidden="true" style="color:var(--leaf)"></i></div>
                 <h2>סדנאות איטלקיות</h2>
               </div>
-              <p style="color:rgba(20,18,22,.82)">
+              <p style="color:rgba(245,245,247,.90)">
                 אם אתם רוצים לחוות את איטליה לערב אחד – הגעתם למקום הנכון.
                 הסדנאות שלי הן חוויה שלמה של יצירה, יין ואוכל מעולה.
               </p>
@@ -556,23 +641,24 @@
 
           <div class="card">
             <div class="card-inner">
-              <div class="title" style="margin-bottom:6px">
-                <div class="icon"><i class="fas fa-camera" aria-hidden="true"></i></div>
-                <h2 style="margin:0">תמונות מהסדנאות</h2>
+              <div class="gallery-head">
+                <div class="title" style="margin:0">
+                  <div class="badge"><i class="fas fa-camera" aria-hidden="true"></i></div>
+                  <h2 style="margin:0">תמונות מהסדנאות</h2>
+                </div>
+                <p class="gallery-note">לחצו למסך מלא • דפדוף עם חצים/סווייפ</p>
               </div>
-              <p style="margin:0 0 12px;color:rgba(20,18,22,.68)">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
 
-              <div class="gallery-grid" aria-label="גלריית סדנאות">
-                <!-- workshop1..workshop14 -->
-                <div class="thumb" data-group="workshops" data-index="0"><img src="workshop1.jpg" alt="סדנה 1" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="1"><img src="workshop2.jpg" alt="סדנה 2" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="2"><img src="workshop3.jpg" alt="סדנה 3" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="3"><img src="workshop4.jpg" alt="סדנה 4" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="4"><img src="workshop5.jpg" alt="סדנה 5" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="5"><img src="workshop6.jpg" alt="סדנה 6" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="6"><img src="workshop7.jpg" alt="סדנה 7" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="7"><img src="workshop8.jpg" alt="סדנה 8" loading="lazy" decoding="async"></div>
-                <div class="thumb" data-group="workshops" data-index="8"><img src="workshop9.jpg" alt="סדנה 9" loading="lazy" decoding="async"></div>
+              <div class="gallery-masonry" aria-label="גלריית סדנאות">
+                <div class="thumb" data-group="workshops" data-index="0"><img src="workshop1.jpg"  alt="סדנה 1"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="1"><img src="workshop2.jpg"  alt="סדנה 2"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="2"><img src="workshop3.jpg"  alt="סדנה 3"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="3"><img src="workshop4.jpg"  alt="סדנה 4"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="4"><img src="workshop5.jpg"  alt="סדנה 5"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="5"><img src="workshop6.jpg"  alt="סדנה 6"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="6"><img src="workshop7.jpg"  alt="סדנה 7"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="7"><img src="workshop8.jpg"  alt="סדנה 8"  loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="8"><img src="workshop9.jpg"  alt="סדנה 9"  loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="workshops" data-index="9"><img src="workshop10.jpg" alt="סדנה 10" loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="workshops" data-index="10"><img src="workshop11.jpg" alt="סדנה 11" loading="lazy" decoding="async"></div>
                 <div class="thumb" data-group="workshops" data-index="11"><img src="workshop12.jpg" alt="סדנה 12" loading="lazy" decoding="async"></div>
@@ -581,6 +667,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -591,13 +678,11 @@
         <div class="card">
           <div class="card-inner">
             <div class="title">
-              <div class="icon"><i class="fas fa-message" aria-hidden="true" style="color:var(--tomato)"></i></div>
+              <div class="badge"><i class="fas fa-message" aria-hidden="true"></i></div>
               <h2>יצירת קשר</h2>
             </div>
-            <p style="color:rgba(20,18,22,.82)">
-              הכי פשוט: שולחים וואטסאפ עם תאריך, כמות אנשים ומה בא לכם – ואני חוזר עם הצעה.
-            </p>
-            <p>טלפון: <b style="color:rgba(20,18,22,.88)">055-9952451</b></p>
+            <p style="color:rgba(245,245,247,.90)">הכי פשוט: שולחים וואטסאפ עם תאריך, כמות אנשים ומה בא לכם – ואני חוזר עם הצעה.</p>
+            <p>טלפון: <span style="color:rgba(245,245,247,.92);font-weight:1000">055-9952451</span></p>
 
             <div class="cta">
               <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%94%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
@@ -611,10 +696,10 @@
 
     <footer>
       <div class="container">
-        <div style="display:grid;gap:8px;justify-items:center">
-          <div style="font-weight:1000">Yot Pizza</div>
-          <div style="opacity:.8">055-9952451</div>
-          <div style="opacity:.6;font-size:.9rem">© 2025 כל הזכויות שמורות</div>
+        <div style="display:grid;gap:10px;justify-items:center">
+          <div style="font-weight:1000;font-size:1.05rem">Yot Pizza</div>
+          <div style="opacity:.85">055-9952451</div>
+          <div class="small">© 2025 כל הזכויות שמורות</div>
         </div>
       </div>
     </footer>
@@ -636,6 +721,7 @@
   </div>
 
   <script>
+    // Keep your exact filenames (.jpg)
     const groups = {
       events: Array.from({length: 15}, (_, i) => ({ src: `event${i+1}.jpg`, alt: `אירוע ${i+1}` })),
       workshops: Array.from({length: 14}, (_, i) => ({ src: `workshop${i+1}.jpg`, alt: `סדנה ${i+1}` }))
