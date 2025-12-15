@@ -3,38 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#D32F2F" />
+  <meta name="theme-color" content="#0f0f10" />
 
   <title>Yot Pizza | אבן. אש. בצק</title>
   <meta name="description" content="Yot Pizza — יותם שף פרטי לאירועי בוטיק וסדנאות איטלקיות. אבן. אש. בצק." />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Yot Pizza | אבן. אש. בצק" />
-  <meta property="og:description" content="אירועי שף פרטיים וסדנאות איטלקיות אצלכם בבית. להזמנות בוואטסאפ." />
-  <meta property="og:locale" content="he_IL" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" referrerpolicy="no-referrer" />
 
   <style>
     :root{
-      --primary:#D32F2F;
-      --primary-700:#b71c1c;
-      --accent:#2E5C35;
-      --bg:#f7f7f7;
-      --text:#141414;
-      --muted:#6b7280;
-      --card:#ffffff;
-      --shadow: 0 20px 60px rgba(0,0,0,.10);
+      --bg:#0f0f10;
+      --bg2:#141416;
+      --card:#17181b;
+      --text:#f4f4f5;
+      --muted:rgba(244,244,245,.72);
+      --line:rgba(255,255,255,.10);
+
+      --stone:#d7d2c8;
+      --fire:#ff4d2f;
+      --dough:#f2c57c;
+      --leaf:#3ddc97;
+
+      --shadow: 0 30px 80px rgba(0,0,0,.45);
       --radius: 22px;
-      --max: 1100px;
+      --max: 1120px;
     }
 
     *{box-sizing:border-box}
@@ -42,547 +37,820 @@
     body{
       margin:0;
       font-family:'Heebo',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-      background:var(--bg);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(255,77,47,.12), transparent 60%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(61,220,151,.10), transparent 60%),
+        radial-gradient(1100px 800px at 60% 95%, rgba(242,197,124,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color:var(--text);
       overflow-x:hidden;
     }
-    h1,h2,h3{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px}
-    p{margin:0 0 14px; line-height:1.7}
+
     a{color:inherit; text-decoration:none}
-    img{max-width:100%; height:auto}
+    p{margin:0 0 14px; line-height:1.75; color:var(--muted)}
+    h1,h2{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px}
+    img{max-width:100%; height:auto; display:block}
 
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    :focus-visible{outline:3px solid rgba(255,77,47,.35); outline-offset:3px; border-radius:14px}
+
+    /* Layout */
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .section{padding:70px 0}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:start;
     }
-    :focus-visible{outline:3px solid rgba(211,47,47,.35); outline-offset:3px; border-radius:12px}
 
+    /* Top minimal nav */
+    .top{
+      position:sticky; top:0; z-index:1200;
+      background:rgba(15,15,16,.55);
+      backdrop-filter: blur(12px) saturate(120%);
+      border-bottom:1px solid var(--line);
+    }
     .topbar{
-      position:sticky; top:0; z-index:2000;
-      backdrop-filter:saturate(120%) blur(10px);
-      background:rgba(247,247,247,.75);
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .topbar-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:12px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 0;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
-      font-weight:800;
+      font-weight:900;
+      letter-spacing:.2px;
     }
-    .brand-badge{
-      width:38px; height:38px; border-radius:12px;
-      background:linear-gradient(135deg,var(--primary),var(--accent));
-      display:grid; place-items:center;
-      color:#fff;
-      box-shadow:0 10px 25px rgba(0,0,0,.12);
-      flex:0 0 auto;
+    .mark{
+      width:40px; height:40px; border-radius:14px;
+      background:
+        radial-gradient(16px 16px at 28% 30%, rgba(255,255,255,.28), transparent 55%),
+        linear-gradient(135deg, rgba(255,77,47,.95), rgba(242,197,124,.95));
+      box-shadow: 0 18px 40px rgba(255,77,47,.18);
     }
-    nav{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      justify-content:flex-end;
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
     }
-    .navlink{
+    .nav a{
       padding:8px 10px;
       border-radius:999px;
-      color:rgba(0,0,0,.75);
+      border:1px solid transparent;
+      color:rgba(244,244,245,.85);
       font-weight:700;
       font-size:.95rem;
     }
-    .navlink:hover{background:rgba(0,0,0,.05)}
-    .nav-cta{display:flex; gap:10px; align-items:center}
+    .nav a:hover{border-color:var(--line); background:rgba(255,255,255,.04)}
 
+    /* Hero */
+    .hero{
+      position:relative;
+      padding:52px 0 18px;
+    }
+    .hero-wrap{
+      position:relative;
+      border-radius:calc(var(--radius) + 10px);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      background:rgba(23,24,27,.55);
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(15,15,16,.86), rgba(15,15,16,.45) 55%, rgba(15,15,16,.92)),
+        url("hero-bg.jpg") center/cover no-repeat;
+      transform:scale(1.03);
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .hero-inner{
+      position:relative;
+      padding:64px 22px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:22px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(244,244,245,.9);
+      font-weight:800;
+      width:max-content;
+      margin-bottom:16px;
+    }
+    .dot{width:7px; height:7px; border-radius:999px; background:var(--fire); box-shadow:0 0 0 6px rgba(255,77,47,.14)}
+    .hero h1{
+      font-size:clamp(2.2rem,4.8vw,4.1rem);
+      line-height:1.08;
+      margin-bottom:10px;
+      color:#fff;
+      text-shadow: 0 22px 60px rgba(0,0,0,.55);
+    }
+    .hero .lead{
+      font-size:clamp(1.05rem,2.1vw,1.25rem);
+      max-width:56ch;
+      color:rgba(244,244,245,.86);
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+      align-items:center;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 18px;
       border-radius:999px;
-      font-weight:800;
-      border:1px solid transparent;
-      transition:transform .2s, background .2s, box-shadow .2s, opacity .2s;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font-weight:900;
       cursor:pointer;
-      user-select:none;
+      transition: transform .18s, background .18s, border-color .18s;
       white-space:nowrap;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{
-      background:var(--primary);
-      color:#fff;
-      box-shadow:0 12px 26px rgba(211,47,47,.25);
+    .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.16)}
+    .btn-fire{
+      background: linear-gradient(135deg, rgba(255,77,47,.98), rgba(242,197,124,.92));
+      border-color: transparent;
+      box-shadow: 0 18px 45px rgba(255,77,47,.20);
+      color:#101012;
     }
-    .btn-primary:hover{background:var(--primary-700); transform:translateY(-2px)}
-    .btn-ghost{
-      background:rgba(255,255,255,.75);
-      border-color:rgba(0,0,0,.10);
-      color:rgba(0,0,0,.85);
-    }
-    .btn-ghost:hover{transform:translateY(-2px); background:#fff}
-    .btn-accent{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 12px 26px rgba(46,92,53,.22);
-    }
-    .btn-accent:hover{transform:translateY(-2px); opacity:.95}
+    .btn-fire:hover{transform:translateY(-2px); filter:saturate(1.05)}
     .btn-insta{
-      background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-      color:#fff;
-      box-shadow:0 12px 26px rgba(0,0,0,.18);
+      background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      border-color:transparent;
+      box-shadow:0 18px 45px rgba(0,0,0,.35);
     }
-    .btn-insta:hover{transform:translateY(-2px); opacity:.95}
 
+    .hero-right{
+      display:grid;
+      gap:12px;
+      justify-items:stretch;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(15,15,16,.42);
+      padding:14px 14px;
+    }
+    .stat b{color:#fff}
+    .triple{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:10px;
+      margin-top:8px;
+    }
+    .chip{
+      border-radius:999px;
+      padding:10px 12px;
+      text-align:center;
+      font-weight:900;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(244,244,245,.92);
+    }
+    .chip span{display:block; font-weight:800; font-size:.92rem; color:rgba(244,244,245,.82)}
+    .chip .big{font-family:'Rubik'; font-size:1.05rem; color:#fff}
+    .chip.stone .big{color:var(--stone)}
+    .chip.fire  .big{color:var(--fire)}
+    .chip.dough .big{color:var(--dough)}
+
+    /* Cards */
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:rgba(23,24,27,.58);
+      box-shadow: 0 24px 70px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .card-inner{padding:26px}
+    .title{
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:10px;
+    }
+    .badge{
+      width:38px; height:38px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+    }
+    .badge i{color:#fff; opacity:.92}
+
+    /* About */
+    .about{
+      display:grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap:22px;
+      align-items:center;
+    }
+    .photo{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+      position:relative;
+    }
+    .photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(0deg, rgba(15,15,16,.55), transparent 45%);
+      pointer-events:none;
+    }
+    .photo img{width:100%; height:420px; object-fit:cover}
+
+    /* Gallery */
+    .gallery{
+      padding:18px 0 4px;
+      display:grid;
+      gap:14px;
+    }
+    .gallery-strip{
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns: minmax(220px, 1fr);
+      gap:14px;
+      overflow:auto;
+      padding:6px 2px 14px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .gallery-strip::-webkit-scrollbar{height:8px}
+    .gallery-strip::-webkit-scrollbar-track{background:rgba(255,255,255,.07); border-radius:999px}
+    .gallery-strip::-webkit-scrollbar-thumb{background:rgba(255,77,47,.70); border-radius:999px}
+
+    .tile{
+      scroll-snap-align:start;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      cursor:pointer;
+      position:relative;
+      min-height:340px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      transition: transform .18s, filter .18s;
+    }
+    .tile:hover{transform:translateY(-3px); filter:saturate(1.05)}
+    .tile img{
+      width:100%;
+      height:360px;
+      object-fit:cover;
+    }
+    .tile::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(600px 220px at 50% 120%, rgba(0,0,0,.55), transparent 60%);
+      pointer-events:none;
+    }
+
+    .cta{
+      margin-top:12px;
+      display:flex; justify-content:flex-start;
+    }
+
+    /* WhatsApp floating (only one) */
     .wa-float{
       position:fixed;
       bottom:22px;
       left:22px;
-      z-index:2500;
+      z-index:2200;
     }
     .wa-float a{
       display:inline-flex; align-items:center; gap:10px;
       background:#25D366;
-      color:#fff;
-      padding:14px 18px;
+      color:#0b0b0c;
+      padding:14px 16px;
       border-radius:999px;
-      font-weight:900;
-      box-shadow:0 10px 30px rgba(0,0,0,.20);
+      font-weight:1000;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.15);
     }
-    .wa-float a:hover{transform:scale(1.03); background:#1ebc57}
+    .wa-float a:hover{transform:scale(1.03); filter:saturate(1.05)}
     .wa-float i{font-size:1.35rem}
+    .wa-float span{font-weight:1000}
 
-    .hero{
-      position:relative;
-      min-height:78vh;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color:#fff;
-      overflow:hidden;
-      background:#111;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.88)),
-        url("hero-bg.jpg") center/cover no-repeat;
-      transform:scale(1.02);
-      will-change:transform;
-    }
-    .hero-inner{
-      position:relative;
-      max-width:var(--max);
-      padding:64px 16px 48px;
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      color:rgba(255,255,255,.92);
-      font-weight:700;
-      margin-bottom:18px;
-    }
-    .hero h1{
-      font-size:clamp(2.2rem,5vw,4rem);
-      text-shadow:0 18px 45px rgba(0,0,0,.6);
-      letter-spacing:.2px;
-      margin-bottom:10px;
-    }
-    .hero p{
-      font-size:clamp(1.05rem,2.2vw,1.4rem);
-      color:rgba(255,255,255,.92);
-      margin:0 auto 22px;
-      max-width:52ch;
-    }
-    .hero-actions{
-      display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
-      margin-top:16px;
-    }
-
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 16px 70px;
-      transform:translateY(-40px);
-    }
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:34px;
-      margin-bottom:22px;
-      border:1px solid rgba(0,0,0,.06);
-    }
-    .section-title{
-      display:flex; align-items:center; gap:12px;
-      margin-bottom:10px;
-    }
-    .section-title i{opacity:.9}
-
-    .about{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:28px;
-      align-items:center;
-    }
-    .portrait{
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow: -14px 14px 0 rgba(46,92,53,.14);
-      border:1px solid rgba(0,0,0,.06);
-    }
-    .muted{color:var(--muted)}
-
-    .gallery-head{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      margin-top:14px;
-    }
-    .hint{font-size:.92rem; color:var(--muted)}
-    .gallery-controls{display:flex; gap:10px}
-    .iconbtn{
-      width:42px; height:42px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.10);
-      background:#fff;
-      box-shadow:0 10px 22px rgba(0,0,0,.08);
-      display:grid; place-items:center;
-      cursor:pointer;
-      transition:transform .2s;
-    }
-    .iconbtn:hover{transform:translateY(-2px)}
-    .scroll-gallery{
-      display:flex;
-      gap:14px;
-      overflow-x:auto;
-      padding:10px 4px 18px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-    }
-    .scroll-gallery::-webkit-scrollbar{height:8px}
-    .scroll-gallery::-webkit-scrollbar-track{background:#eee; border-radius:999px}
-    .scroll-gallery::-webkit-scrollbar-thumb{background:rgba(211,47,47,.85); border-radius:999px}
-    .gitem{
-      flex:0 0 auto;
-      width:min(240px, 70vw);
-      scroll-snap-align:start;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 12px 26px rgba(0,0,0,.10);
-      background:#fafafa;
-      cursor:pointer;
-      transition:transform .2s;
-    }
-    .gitem:hover{transform:scale(1.02)}
-    .gitem img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .modal{
+    /* Lightbox with navigation */
+    .lightbox{
       position:fixed; inset:0;
       background:rgba(0,0,0,.92);
       display:none;
-      z-index:4000;
+      z-index:3000;
       padding:18px;
+      touch-action:pan-y;
     }
-    .modal[aria-hidden="false"]{display:grid; place-items:center}
-    .modal-inner{
+    .lightbox[aria-hidden="false"]{display:grid; place-items:center}
+    .lb-frame{
+      width:min(1100px, 96vw);
+      height:min(86vh, 900px);
       position:relative;
-      max-width:min(1100px, 96vw);
-      max-height:86vh;
-      width:auto;
+      display:grid;
+      place-items:center;
     }
-    .modal-img{
+    .lb-img{
       max-width:100%;
-      max-height:86vh;
-      border-radius:12px;
-      display:block;
+      max-height:100%;
+      border-radius:14px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      user-select:none;
+      -webkit-user-drag:none;
     }
-    .modal-close{
+    .lb-close{
       position:absolute;
-      top:-10px;
-      right:-10px;
+      top:-8px; right:-8px;
       width:44px; height:44px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.10);
       color:#fff;
       display:grid; place-items:center;
       cursor:pointer;
       backdrop-filter: blur(10px);
     }
-    .modal-close:hover{background:rgba(255,255,255,.18)}
-
-    footer{
-      background:#141414;
+    .lb-close:hover{background:rgba(255,255,255,.16)}
+    .lb-nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px; height:48px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
       color:#fff;
-      padding:34px 16px;
+      display:grid; place-items:center;
+      cursor:pointer;
+      backdrop-filter: blur(10px);
+    }
+    .lb-nav:hover{background:rgba(255,255,255,.16)}
+    .lb-prev{left:-6px}
+    .lb-next{right:-6px}
+    .lb-cap{
+      position:absolute;
+      bottom:-8px;
+      left:0; right:0;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      font-weight:800;
+      color:rgba(244,244,245,.9);
+      font-size:.95rem;
+    }
+    .lb-cap span{opacity:.9}
+    .lb-cap small{opacity:.7; font-weight:700}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding:36px 0;
+      color:rgba(244,244,245,.85);
       text-align:center;
     }
-    footer a{color:#fff; text-decoration:underline}
-    footer .small{opacity:.6; font-size:.88rem}
+    footer .small{opacity:.6; font-size:.9rem}
 
-    @media (max-width: 860px){
-      .about{grid-template-columns:1fr; text-align:right}
-      .wrap{transform:translateY(-26px)}
-      .card{padding:24px}
-      nav{display:none}
+    /* Responsive */
+    @media (max-width: 940px){
+      .hero-inner{grid-template-columns:1fr}
+      .triple{grid-template-columns:1fr; gap:10px}
+      .grid{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
+      .photo img{height:360px}
     }
-    @media (max-width: 520px){
+    @media (max-width: 560px){
+      .nav{display:none}
       .wa-float a span{display:none}
       .wa-float a{padding:14px; border-radius:50%}
+      .lb-prev{left:6px}
+      .lb-next{right:6px}
     }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto}
-      .btn, .iconbtn, .gitem{transition:none}
-      .btn-primary:hover, .btn-ghost:hover, .btn-accent:hover, .btn-insta:hover{transform:none}
+      .btn, .tile{transition:none}
+      .btn:hover, .tile:hover{transform:none}
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FoodEstablishment",
-    "name": "Yot Pizza",
-    "description": "שף פרטי לאירועים וסדנאות איטלקיות",
-    "telephone": "+972-55-995-2451",
-    "sameAs": ["https://www.instagram.com/yot_pizza"]
-  }
-  </script>
 </head>
 
 <body>
+  <!-- Only one WhatsApp floating button -->
   <div class="wa-float">
-    <a href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
+    <a href="https://wa.me/972559952451" target="_blank" rel="noopener" aria-label="דברו איתי בוואטסאפ">
       <i class="fab fa-whatsapp" aria-hidden="true"></i>
       <span>דברו איתי</span>
     </a>
   </div>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="Yot Pizza">
-        <span class="brand-badge">Y</span>
-        <span>Yot Pizza</span>
-      </a>
-
-      <nav aria-label="תפריט">
-        <a class="navlink" href="#about">נעים להכיר</a>
-        <a class="navlink" href="#events">אירועים</a>
-        <a class="navlink" href="#workshops">סדנאות</a>
-        <a class="navlink" href="#contact">יצירת קשר</a>
-      </nav>
-
-      <div class="nav-cta">
-        <a class="btn btn-ghost" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
-          <i class="fab fa-instagram" aria-hidden="true"></i>
-          אינסטגרם
+  <header class="top">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="#top" aria-label="Yot Pizza">
+          <span class="mark" aria-hidden="true"></span>
+          <span>Yot Pizza</span>
         </a>
-        <a class="btn btn-primary" href="https://wa.me/972559952451" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-          וואטסאפ
-        </a>
+        <nav class="nav" aria-label="תפריט">
+          <a href="#about">נעים להכיר</a>
+          <a href="#events">אירועים</a>
+          <a href="#workshops">סדנאות</a>
+          <a href="#contact">יצירת קשר</a>
+        </nav>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="פתיח">
-      <div class="hero-inner">
-        <div class="kicker">
-          <span>אבן. אש. בצק</span>
-          <span aria-hidden="true">•</span>
-          <span class="muted" style="color:rgba(255,255,255,.85)">אירועי בוטיק וסדנאות</span>
-        </div>
-        <h1>חוויה איטלקית אצלכם בבית</h1>
-        <p>אני יותם — שף פרטי. מביא אליכם אוכל איטלקי אמיתי, טאבון לוהט, והכי חשוב: ערב שמחבר אנשים דרך טעמים.</p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-bg" aria-hidden="true"></div>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
-          <a class="btn btn-ghost" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
-          <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
-            <i class="fab fa-instagram" aria-hidden="true"></i> עקבו באינסטגרם
-          </a>
+          <div class="hero-inner">
+            <div>
+              <div class="pill"><span class="dot" aria-hidden="true"></span> אבן. אש. בצק</div>
+              <h1>חוויה איטלקית. בוטיק. אצלכם בבית.</h1>
+              <p class="lead">אני יותם — שף פרטי לאירועים וסדנאות איטלקיות. אוכל אמיתי, שירות חד, ואווירה שמרימה את כל השולחן.</p>
+
+              <div class="cta-row">
+                <a class="btn btn-fire" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
+                <a class="btn" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
+                <!-- One prominent Instagram link -->
+                <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
+                  <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-right">
+              <div class="stat">
+                <p style="margin:0;color:rgba(244,244,245,.88)">
+                  <b>מה מקבלים בפועל?</b><br/>
+                  ערב שמרגיש כמו חופשה: בצק בידיים, טאבון לוהט, ומנות שמגיעות לשולחן בדיוק בזמן.
+                </p>
+                <div class="triple" aria-label="אבן אש בצק">
+                  <div class="chip stone"><div class="big">אבן</div><span>דיוק וחומר גלם</span></div>
+                  <div class="chip fire"><div class="big">אש</div><span>חום, קצב, אנרגיה</span></div>
+                  <div class="chip dough"><div class="big">בצק</div><span>טכניקה וחוויה</span></div>
+                </div>
+              </div>
+
+              <div class="stat">
+                <p style="margin:0;color:rgba(244,244,245,.88)">
+                  <b>איך סוגרים?</b><br/>
+                  שולחים הודעה קצרה בוואטסאפ עם תאריך, כמות אנשים ומה בא לכם — ואני חוזר עם הצעה.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="wrap">
-      <section id="about" class="card">
-        <div class="about">
-          <div>
-            <div class="section-title">
-              <i class="fas fa-leaf" aria-hidden="true" style="color:var(--accent)"></i>
-              <h2 style="color:var(--accent)">נעים להכיר, יותם</h2>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="card">
+          <div class="card-inner about">
+            <div class="photo">
+              <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async">
             </div>
-            <p>התשוקה שלי היא לחבר בין אנשים דרך אוכל איטלקי אמיתי — מנות שנולדות מחומרי גלם מצוינים, דיוק בבצק, ושירות שמרגיש כמו בבית.</p>
-            <p class="muted">אירועים פרטיים, ערבי צוות, מסיבות, זוגות, וחוויות בוטיק. אתם מביאים את האנשים — אני מביא את איטליה.</p>
-          </div>
+            <div>
+              <div class="title">
+                <div class="badge"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+                <h2>נעים להכיר, יותם</h2>
+              </div>
+              <p style="color:rgba(244,244,245,.88)">
+                התשוקה שלי היא לחבר בין אנשים דרך אוכל איטלקי אמיתי. המטבח עבורי הוא לא רק מקום עבודה,
+                אלא מגרש משחקים של טעמים, ריחות וזכרונות.
+              </p>
+              <p>
+                אני מביא אליכם הביתה את איטליה הקלאסית, עם טוויסטים מודרניים וחומרי גלם שלא מתפשרים עליהם.
+                מהקמח, דרך העגבניות ועד לפרמזן.
+              </p>
 
-          <div class="portrait">
-            <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async">
-          </div>
-        </div>
-      </section>
-
-      <section id="events" class="card">
-        <div class="section-title">
-          <i class="fas fa-utensils" aria-hidden="true" style="color:var(--primary)"></i>
-          <h2 style="color:var(--primary)">אירועי שף פרטיים</h2>
-        </div>
-        <p>אותנטיות של איטליה, בלי פילטרים: טאבון לוהט, חומרי גלם טריים, אווירה ושירות מוקפד. אני דואג להכל כדי שאתם פשוט תיהנו.</p>
-
-        <div class="gallery-head">
-          <div class="hint"><i class="fas fa-arrow-right" aria-hidden="true"></i> גללו שמאלה לעוד תמונות • לחצו להגדלה</div>
-          <div class="gallery-controls">
-            <button class="iconbtn" type="button" aria-label="גלילה ימינה" data-scroll="events" data-dir="right"><i class="fas fa-chevron-right"></i></button>
-            <button class="iconbtn" type="button" aria-label="גלילה שמאלה" data-scroll="events" data-dir="left"><i class="fas fa-chevron-left"></i></button>
-          </div>
-        </div>
-
-        <div class="scroll-gallery" id="gallery-events" aria-label="גלריית אירועים">
-          <div class="gitem"><img src="event1.jpg"  alt="אירוע 1"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event2.jpg"  alt="אירוע 2"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event3.jpg"  alt="אירוע 3"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event4.jpg"  alt="אירוע 4"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event5.jpg"  alt="אירוע 5"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event6.jpg"  alt="אירוע 6"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event7.jpg"  alt="אירוע 7"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event8.jpg"  alt="אירוע 8"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event9.jpg"  alt="אירוע 9"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event10.jpg" alt="אירוע 10" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event11.jpg" alt="אירוע 11" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event12.jpg" alt="אירוע 12" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event13.jpg" alt="אירוע 13" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event14.jpg" alt="אירוע 14" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="event15.jpg" alt="אירוע 15" loading="lazy" decoding="async"></div>
-        </div>
-
-        <a class="btn btn-primary" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%90%D7%99%D7%A8%D7%95%D7%A2%20%D7%A9%D7%A3" target="_blank" rel="noopener">
-          בדיקת תאריך לאירוע
-        </a>
-      </section>
-
-      <section id="workshops" class="card">
-        <div class="section-title">
-          <i class="fas fa-pizza-slice" aria-hidden="true" style="color:var(--accent)"></i>
-          <h2 style="color:var(--accent)">סדנאות איטלקיות</h2>
-        </div>
-        <p>חוויית יצירה מלאה: בצק בידיים, טכניקות וסודות קטנים, יין ואוכל מעולה — ובסוף שולחן עמוס בכל טוב מעשה ידיכם.</p>
-
-        <div class="gallery-head">
-          <div class="hint"><i class="fas fa-arrow-right" aria-hidden="true"></i> גללו שמאלה לעוד תמונות • לחצו להגדלה</div>
-          <div class="gallery-controls">
-            <button class="iconbtn" type="button" aria-label="גלילה ימינה" data-scroll="workshops" data-dir="right"><i class="fas fa-chevron-right"></i></button>
-            <button class="iconbtn" type="button" aria-label="גלילה שמאלה" data-scroll="workshops" data-dir="left"><i class="fas fa-chevron-left"></i></button>
+              <!-- CTA at end of section -->
+              <div class="cta">
+                <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%91%D7%90%20%D7%9C%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%94%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
+                  דברו איתי בוואטסאפ
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="scroll-gallery" id="gallery-workshops" aria-label="גלריית סדנאות">
-          <div class="gitem"><img src="workshop1.jpg"  alt="סדנה 1"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop2.jpg"  alt="סדנה 2"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop3.jpg"  alt="סדנה 3"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop4.jpg"  alt="סדנה 4"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop5.jpg"  alt="סדנה 5"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop6.jpg"  alt="סדנה 6"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop7.jpg"  alt="סדנה 7"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop8.jpg"  alt="סדנה 8"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop9.jpg"  alt="סדנה 9"  loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop10.jpg" alt="סדנה 10" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop11.jpg" alt="סדנה 11" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop12.jpg" alt="סדנה 12" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop13.jpg" alt="סדנה 13" loading="lazy" decoding="async"></div>
-          <div class="gitem"><img src="workshop14.jpg" alt="סדנה 14" loading="lazy" decoding="async"></div>
-        </div>
+    <!-- EVENTS -->
+    <section id="events" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <div class="card-inner">
+              <div class="title">
+                <div class="badge"><i class="fas fa-utensils" aria-hidden="true"></i></div>
+                <h2>אירועי שף פרטיים</h2>
+              </div>
+              <p style="color:rgba(244,244,245,.88)">
+                אני מביא את האותנטיות של איטליה ישירות אליכם, בלי פילטרים.
+                עם חומרי הגלם הכי טריים שיש, טאבון לוהט וצוות שבא לעבוד עם הנשמה —
+                אנחנו נרים לכם אירוע מטורף.
+              </p>
+              <p>
+                אנחנו דואגים להכל – לאווירה, לאוכל ולשירות המוקפד –
+                כדי שאתם תוכלו פשוט ליהנות.
+              </p>
 
-        <a class="btn btn-accent" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%A1%D7%93%D7%A0%D7%94" target="_blank" rel="noopener">
-          שריינו סדנה
-        </a>
-      </section>
+              <!-- CTA at end of section -->
+              <div class="cta">
+                <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A%20%D7%9C%D7%90%D7%99%D7%A8%D7%95%D7%A2%20%D7%A9%D7%A3" target="_blank" rel="noopener">
+                  בדיקת תאריך לאירוע
+                </a>
+              </div>
+            </div>
+          </div>
 
-      <section id="contact" class="card">
-        <div class="section-title">
-          <i class="fas fa-message" aria-hidden="true" style="color:var(--primary)"></i>
-          <h2>יצירת קשר</h2>
+          <div class="card">
+            <div class="card-inner">
+              <div class="gallery" aria-label="גלריית אירועים">
+                <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
+                  <div>
+                    <div class="title" style="margin-bottom:4px">
+                      <div class="badge"><i class="fas fa-images" aria-hidden="true"></i></div>
+                      <h2 style="margin:0">תמונות מהאירועים</h2>
+                    </div>
+                    <p style="margin:0;color:rgba(244,244,245,.65);font-size:.95rem">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
+                  </div>
+                </div>
+
+                <div class="gallery-strip" id="eventsStrip">
+                  <!-- event1..event15 -->
+                  <div class="tile" data-group="events" data-index="0"><img src="event1.jpg"  alt="אירוע 1"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="1"><img src="event2.jpg"  alt="אירוע 2"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="2"><img src="event3.jpg"  alt="אירוע 3"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="3"><img src="event4.jpg"  alt="אירוע 4"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="4"><img src="event5.jpg"  alt="אירוע 5"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="5"><img src="event6.jpg"  alt="אירוע 6"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="6"><img src="event7.jpg"  alt="אירוע 7"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="7"><img src="event8.jpg"  alt="אירוע 8"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="8"><img src="event9.jpg"  alt="אירוע 9"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="9"><img src="event10.jpg" alt="אירוע 10" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="10"><img src="event11.jpg" alt="אירוע 11" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="11"><img src="event12.jpg" alt="אירוע 12" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="12"><img src="event13.jpg" alt="אירוע 13" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="13"><img src="event14.jpg" alt="אירוע 14" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="events" data-index="14"><img src="event15.jpg" alt="אירוע 15" loading="lazy" decoding="async"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="muted">הכי מהיר בוואטסאפ. אפשר גם באינסטגרם.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
-          <a class="btn btn-primary" href="https://wa.me/972559952451" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> דברו איתי
-          </a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
-            <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
-          </a>
+      </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section id="workshops" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <div class="card-inner">
+              <div class="title">
+                <div class="badge"><i class="fas fa-pizza-slice" aria-hidden="true"></i></div>
+                <h2>סדנאות איטלקיות</h2>
+              </div>
+              <p style="color:rgba(244,244,245,.88)">
+                אם אתם רוצים לחוות את איטליה לערב אחד – הגעתם למקום הנכון.
+                הסדנאות שלי הן חוויה שלמה של יצירה, יין ואוכל מעולה.
+              </p>
+              <p>
+                נכין יחד ארוחה איטלקית מלאה מא' ועד ת', נרגיש את הבצק בידיים,
+                נלמד את הסודות הקטנים, ובסוף נשב לשולחן עמוס בכל טוב מעשה ידיכם.
+                ערב שכולו טעמים, ריחות וכיף.
+              </p>
+
+              <!-- CTA at end of section -->
+              <div class="cta">
+                <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%91%D7%90%20%D7%9C%D7%99%20%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%A1%D7%93%D7%A0%D7%94" target="_blank" rel="noopener">
+                  שריינו סדנה
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="gallery" aria-label="גלריית סדנאות">
+                <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
+                  <div>
+                    <div class="title" style="margin-bottom:4px">
+                      <div class="badge"><i class="fas fa-camera" aria-hidden="true"></i></div>
+                      <h2 style="margin:0">תמונות מהסדנאות</h2>
+                    </div>
+                    <p style="margin:0;color:rgba(244,244,245,.65);font-size:.95rem">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
+                  </div>
+                </div>
+
+                <div class="gallery-strip" id="workshopsStrip">
+                  <!-- workshop1..workshop14 -->
+                  <div class="tile" data-group="workshops" data-index="0"><img src="workshop1.jpg"  alt="סדנה 1"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="1"><img src="workshop2.jpg"  alt="סדנה 2"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="2"><img src="workshop3.jpg"  alt="סדנה 3"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="3"><img src="workshop4.jpg"  alt="סדנה 4"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="4"><img src="workshop5.jpg"  alt="סדנה 5"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="5"><img src="workshop6.jpg"  alt="סדנה 6"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="6"><img src="workshop7.jpg"  alt="סדנה 7"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="7"><img src="workshop8.jpg"  alt="סדנה 8"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="8"><img src="workshop9.jpg"  alt="סדנה 9"  loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="9"><img src="workshop10.jpg" alt="סדנה 10" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="10"><img src="workshop11.jpg" alt="סדנה 11" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="11"><img src="workshop12.jpg" alt="סדנה 12" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="12"><img src="workshop13.jpg" alt="סדנה 13" loading="lazy" decoding="async"></div>
+                  <div class="tile" data-group="workshops" data-index="13"><img src="workshop14.jpg" alt="סדנה 14" loading="lazy" decoding="async"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="card">
+          <div class="card-inner">
+            <div class="title">
+              <div class="badge"><i class="fas fa-message" aria-hidden="true"></i></div>
+              <h2>יצירת קשר</h2>
+            </div>
+            <p style="color:rgba(244,244,245,.88)">הכי פשוט: שולחים וואטסאפ עם תאריך, כמות אנשים ומה בא לכם – ואני חוזר עם הצעה.</p>
+            <p>טלפון: <span style="color:rgba(244,244,245,.88);font-weight:800">055-9952451</span></p>
+
+            <!-- CTA at end of section -->
+            <div class="cta">
+              <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%94%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
+                שלחו הודעה עכשיו
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div style="display:grid;gap:10px;justify-items:center">
+          <div style="font-weight:900;font-size:1.05rem">Yot Pizza</div>
+          <div style="opacity:.85">055-9952451</div>
+          <div class="small">© 2025 כל הזכויות שמורות</div>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <footer>
-    <p><strong>Yot Pizza</strong> | 055-9952451</p>
-    <p><a href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> עקבו באינסטגרם</a></p>
-    <p class="small">© 2025 כל הזכויות שמורות</p>
-  </footer>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="תצוגת תמונה במסך מלא">
+    <div class="lb-frame">
+      <button class="lb-close" type="button" aria-label="סגור"><i class="fas fa-xmark"></i></button>
+      <button class="lb-nav lb-prev" type="button" aria-label="תמונה קודמת"><i class="fas fa-chevron-right"></i></button>
+      <button class="lb-nav lb-next" type="button" aria-label="תמונה הבאה"><i class="fas fa-chevron-left"></i></button>
 
-  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="תצוגת תמונה מוגדלת">
-    <div class="modal-inner">
-      <button class="modal-close" type="button" aria-label="סגור"><i class="fas fa-xmark"></i></button>
-      <img class="modal-img" id="modalImg" alt="" />
+      <img class="lb-img" id="lbImg" alt="" />
+      <div class="lb-cap" id="lbCap">
+        <span id="lbTitle">תמונה</span>
+        <small id="lbCount">1 / 1</small>
+      </div>
     </div>
   </div>
 
   <script>
-    const scrollByAmount = (el, dir) => {
-      const amount = Math.min(520, el.clientWidth * 0.8);
-      el.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' });
+    // Image groups (keeps your exact filenames)
+    const groups = {
+      events: Array.from({length: 15}, (_, i) => ({
+        src: `event${i+1}.jpg`,
+        alt: `אירוע ${i+1}`
+      })),
+      workshops: Array.from({length: 14}, (_, i) => ({
+        src: `workshop${i+1}.jpg`,
+        alt: `סדנה ${i+1}`
+      }))
     };
 
-    document.querySelectorAll('[data-scroll]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const which = btn.getAttribute('data-scroll');
-        const dir = btn.getAttribute('data-dir');
-        const el = document.getElementById(which === 'events' ? 'gallery-events' : 'gallery-workshops');
-        if (el) scrollByAmount(el, dir);
-      });
-    });
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbCount = document.getElementById('lbCount');
+    const btnClose = lb.querySelector('.lb-close');
+    const btnPrev = lb.querySelector('.lb-prev');
+    const btnNext = lb.querySelector('.lb-next');
 
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const closeBtn = modal.querySelector('.modal-close');
+    let currentGroup = 'events';
+    let currentIndex = 0;
 
-    const openModal = (src, alt) => {
-      modalImg.src = src;
-      modalImg.alt = alt || 'תמונה מוגדלת';
-      modal.setAttribute('aria-hidden', 'false');
-      closeBtn.focus();
+    const render = () => {
+      const items = groups[currentGroup];
+      const item = items[currentIndex];
+
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+
+      lbTitle.textContent = item.alt;
+      lbCount.textContent = `${currentIndex + 1} / ${items.length}`;
+    };
+
+    const openLightbox = (group, index) => {
+      currentGroup = group;
+      currentIndex = index;
+      render();
+      lb.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      btnClose.focus();
     };
 
-    const closeModal = () => {
-      modal.setAttribute('aria-hidden', 'true');
-      modalImg.src = '';
+    const closeLightbox = () => {
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
       document.body.style.overflow = '';
     };
 
-    document.querySelectorAll('.gitem img').forEach(img => {
-      img.addEventListener('click', () => openModal(img.currentSrc || img.src, img.alt));
+    const next = () => {
+      const items = groups[currentGroup];
+      currentIndex = (currentIndex + 1) % items.length;
+      render();
+    };
+
+    const prev = () => {
+      const items = groups[currentGroup];
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      render();
+    };
+
+    // Hook tiles
+    document.querySelectorAll('.tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        const group = tile.getAttribute('data-group');
+        const idx = Number(tile.getAttribute('data-index')) || 0;
+        openLightbox(group, idx);
+      });
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+    // Controls
+    btnClose.addEventListener('click', closeLightbox);
+    btnNext.addEventListener('click', next);
+    btnPrev.addEventListener('click', prev);
+
+    // Click backdrop to close
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) closeLightbox();
     });
+
+    // Keyboard
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+      if (lb.getAttribute('aria-hidden') === 'true') return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') next();      // left arrow = next (RTL friendly feel)
+      if (e.key === 'ArrowRight') prev();     // right arrow = prev
     });
+
+    // Touch swipe
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    const onTouchStart = (e) => {
+      if (lb.getAttribute('aria-hidden') === 'true') return;
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      isSwiping = true;
+    };
+
+    const onTouchMove = (e) => {
+      if (!isSwiping) return;
+      // prevent accidental vertical scroll inside modal
+      const t = e.touches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) e.preventDefault();
+    };
+
+    const onTouchEnd = (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        if (dx < 0) next();  // swipe left
+        else prev();         // swipe right
+      }
+    };
+
+    lb.addEventListener('touchstart', onTouchStart, {passive:true});
+    lb.addEventListener('touchmove', onTouchMove, {passive:false});
+    lb.addEventListener('touchend', onTouchEnd, {passive:true});
   </script>
 </body>
 </html>
