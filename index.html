@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0f0f10" />
+  <meta name="theme-color" content="#f6f1e8" />
 
   <title>Yot Pizza | אבן. אש. בצק</title>
   <meta name="description" content="Yot Pizza — יותם שף פרטי לאירועי בוטיק וסדנאות איטלקיות. אבן. אש. בצק." />
@@ -15,19 +15,18 @@
 
   <style>
     :root{
-      --bg:#0f0f10;
-      --bg2:#141416;
-      --card:#17181b;
-      --text:#f4f4f5;
-      --muted:rgba(244,244,245,.72);
-      --line:rgba(255,255,255,.10);
+      --bg:#f6f1e8;          /* cream */
+      --paper:#ffffff;
+      --ink:#141216;
+      --muted:#5d5a63;
 
-      --stone:#d7d2c8;
-      --fire:#ff4d2f;
-      --dough:#f2c57c;
-      --leaf:#3ddc97;
+      --tomato:#d73b2e;      /* fire */
+      --olive:#2f6b4f;       /* italian green */
+      --wheat:#f0c778;       /* dough */
+      --stone:#d9d3c8;
 
-      --shadow: 0 30px 80px rgba(0,0,0,.45);
+      --line:rgba(20,18,22,.10);
+      --shadow: 0 22px 60px rgba(20,18,22,.12);
       --radius: 22px;
       --max: 1120px;
     }
@@ -37,301 +36,251 @@
     body{
       margin:0;
       font-family:'Heebo',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+      color:var(--ink);
       background:
-        radial-gradient(1200px 800px at 15% 10%, rgba(255,77,47,.12), transparent 60%),
-        radial-gradient(1000px 700px at 85% 15%, rgba(61,220,151,.10), transparent 60%),
-        radial-gradient(1100px 800px at 60% 95%, rgba(242,197,124,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
+        radial-gradient(900px 520px at 15% 10%, rgba(215,59,46,.12), transparent 60%),
+        radial-gradient(900px 520px at 85% 15%, rgba(47,107,79,.10), transparent 60%),
+        radial-gradient(900px 520px at 60% 95%, rgba(240,199,120,.14), transparent 60%),
+        var(--bg);
       overflow-x:hidden;
     }
 
     a{color:inherit; text-decoration:none}
     p{margin:0 0 14px; line-height:1.75; color:var(--muted)}
-    h1,h2{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px}
-    img{max-width:100%; height:auto; display:block}
+    h1,h2{font-family:'Rubik',system-ui,-apple-system,Segoe UI,Arial,sans-serif; margin:0 0 12px; letter-spacing:.2px}
+    img{display:block; max-width:100%; height:auto}
 
-    :focus-visible{outline:3px solid rgba(255,77,47,.35); outline-offset:3px; border-radius:14px}
+    :focus-visible{outline:3px solid rgba(215,59,46,.25); outline-offset:3px; border-radius:14px}
 
-    /* Layout */
     .container{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .section{padding:70px 0}
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:26px;
-      align-items:start;
-    }
+    .section{padding:68px 0}
 
-    /* Top minimal nav */
+    /* Top */
     .top{
-      position:sticky; top:0; z-index:1200;
-      background:rgba(15,15,16,.55);
-      backdrop-filter: blur(12px) saturate(120%);
+      position:sticky; top:0; z-index:1000;
+      background:rgba(246,241,232,.75);
+      backdrop-filter: blur(10px) saturate(120%);
       border-bottom:1px solid var(--line);
     }
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:12px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-    .mark{
-      width:40px; height:40px; border-radius:14px;
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900}
+    .stamp{
+      width:40px;height:40px;border-radius:16px;
       background:
-        radial-gradient(16px 16px at 28% 30%, rgba(255,255,255,.28), transparent 55%),
-        linear-gradient(135deg, rgba(255,77,47,.95), rgba(242,197,124,.95));
-      box-shadow: 0 18px 40px rgba(255,77,47,.18);
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.75), transparent 60%),
+        linear-gradient(135deg,var(--tomato),var(--wheat));
+      box-shadow:0 12px 30px rgba(215,59,46,.18);
     }
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .nav{display:flex; gap:10px; flex-wrap:wrap}
     .nav a{
-      padding:8px 10px;
-      border-radius:999px;
+      font-weight:800; font-size:.95rem;
+      padding:8px 10px; border-radius:999px;
       border:1px solid transparent;
-      color:rgba(244,244,245,.85);
-      font-weight:700;
-      font-size:.95rem;
     }
-    .nav a:hover{border-color:var(--line); background:rgba(255,255,255,.04)}
+    .nav a:hover{border-color:var(--line); background:rgba(255,255,255,.55)}
 
-    /* Hero */
-    .hero{
-      position:relative;
-      padding:52px 0 18px;
-    }
-    .hero-wrap{
-      position:relative;
-      border-radius:calc(var(--radius) + 10px);
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow: var(--shadow);
-      background:rgba(23,24,27,.55);
-    }
-    .hero-bg{
-      position:absolute; inset:0;
-      background:
-        linear-gradient(90deg, rgba(15,15,16,.86), rgba(15,15,16,.45) 55%, rgba(15,15,16,.92)),
-        url("hero-bg.jpg") center/cover no-repeat;
-      transform:scale(1.03);
-      filter:saturate(1.05) contrast(1.05);
-    }
-    .hero-inner{
-      position:relative;
-      padding:64px 22px;
+    /* Hero (split layout) */
+    .hero{padding:28px 0 0}
+    .hero-grid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:22px;
-      align-items:center;
+      gap:18px;
+      align-items:stretch;
+    }
+    .hero-copy{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius:calc(var(--radius) + 6px);
+      box-shadow:var(--shadow);
+      padding:26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ribbon{
+      position:absolute; inset:auto -90px -90px auto;
+      width:220px; height:220px;
+      background: radial-gradient(circle at 40% 40%, rgba(47,107,79,.22), transparent 60%);
+      transform: rotate(12deg);
+      pointer-events:none;
     }
     .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:8px 14px;
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:rgba(244,244,245,.9);
-      font-weight:800;
+      border:1px dashed rgba(20,18,22,.22);
+      background:rgba(255,255,255,.5);
+      font-weight:900;
       width:max-content;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
-    .dot{width:7px; height:7px; border-radius:999px; background:var(--fire); box-shadow:0 0 0 6px rgba(255,77,47,.14)}
+    .pill b:nth-child(1){color:var(--olive)}
+    .pill b:nth-child(2){color:var(--tomato)}
+    .pill b:nth-child(3){color:var(--wheat)}
     .hero h1{
-      font-size:clamp(2.2rem,4.8vw,4.1rem);
+      font-size:clamp(2.1rem,4.5vw,3.6rem);
       line-height:1.08;
       margin-bottom:10px;
-      color:#fff;
-      text-shadow: 0 22px 60px rgba(0,0,0,.55);
     }
-    .hero .lead{
-      font-size:clamp(1.05rem,2.1vw,1.25rem);
-      max-width:56ch;
-      color:rgba(244,244,245,.86);
-    }
-    .cta-row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:18px;
-      align-items:center;
-    }
+    .lead{font-size:clamp(1.05rem,2vw,1.2rem); color:rgba(20,18,22,.78); max-width:55ch}
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 18px;
+      padding:12px 16px;
       border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      font-weight:900;
+      background:rgba(255,255,255,.75);
+      font-weight:1000;
       cursor:pointer;
-      transition: transform .18s, background .18s, border-color .18s;
+      transition: transform .18s, box-shadow .18s, background .18s;
       white-space:nowrap;
     }
-    .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.16)}
+    .btn:hover{transform:translateY(-2px); background:#fff; box-shadow:0 14px 30px rgba(20,18,22,.12)}
     .btn-fire{
-      background: linear-gradient(135deg, rgba(255,77,47,.98), rgba(242,197,124,.92));
-      border-color: transparent;
-      box-shadow: 0 18px 45px rgba(255,77,47,.20);
-      color:#101012;
+      background:linear-gradient(135deg,var(--tomato),var(--wheat));
+      border-color:transparent;
+      color:#151316;
     }
-    .btn-fire:hover{transform:translateY(-2px); filter:saturate(1.05)}
     .btn-insta{
       background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
       border-color:transparent;
-      box-shadow:0 18px 45px rgba(0,0,0,.35);
+      color:#fff;
     }
 
-    .hero-right{
-      display:grid;
-      gap:12px;
-      justify-items:stretch;
-    }
-    .stat{
+    .hero-image{
+      border-radius:calc(var(--radius) + 6px);
+      overflow:hidden;
       border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      position:relative;
+      min-height:340px;
+      background:#ddd;
+    }
+    .hero-image::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(0deg, rgba(20,18,22,.55), rgba(20,18,22,.08) 55%),
+        url("hero-bg.jpg") center/cover no-repeat;
+      transform:scale(1.02);
+    }
+    .hero-image .overlay{
+      position:absolute; inset:auto 16px 16px 16px;
+      color:#fff;
+      background:rgba(20,18,22,.42);
+      border:1px solid rgba(255,255,255,.18);
       border-radius:18px;
-      background:rgba(15,15,16,.42);
-      padding:14px 14px;
+      padding:14px;
+      backdrop-filter: blur(8px);
     }
-    .stat b{color:#fff}
-    .triple{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:10px;
-      margin-top:8px;
+    .overlay .k{font-weight:1000}
+    .overlay small{opacity:.9}
+
+    /* Diagonal separators */
+    .slash{
+      height:56px;
+      background:linear-gradient(90deg, rgba(215,59,46,.16), rgba(47,107,79,.14), rgba(240,199,120,.18));
+      clip-path: polygon(0 0, 100% 14%, 100% 100%, 0 86%);
+      margin-top:26px;
+      border-top:1px solid rgba(20,18,22,.06);
+      border-bottom:1px solid rgba(20,18,22,.06);
     }
-    .chip{
-      border-radius:999px;
-      padding:10px 12px;
-      text-align:center;
-      font-weight:900;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:rgba(244,244,245,.92);
-    }
-    .chip span{display:block; font-weight:800; font-size:.92rem; color:rgba(244,244,245,.82)}
-    .chip .big{font-family:'Rubik'; font-size:1.05rem; color:#fff}
-    .chip.stone .big{color:var(--stone)}
-    .chip.fire  .big{color:var(--fire)}
-    .chip.dough .big{color:var(--dough)}
 
     /* Cards */
     .card{
+      background:rgba(255,255,255,.75);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background:rgba(23,24,27,.58);
-      box-shadow: 0 24px 70px rgba(0,0,0,.35);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
     .card-inner{padding:26px}
+
     .title{
       display:flex; align-items:center; gap:12px;
       margin-bottom:10px;
     }
-    .badge{
-      width:38px; height:38px;
-      border-radius:14px;
-      display:grid; place-items:center;
-      background:rgba(255,255,255,.06);
+    .icon{
+      width:42px;height:42px;border-radius:16px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.75);
       border:1px solid var(--line);
     }
-    .badge i{color:#fff; opacity:.92}
 
     /* About */
     .about{
       display:grid;
-      grid-template-columns: .92fr 1.08fr;
+      grid-template-columns: .9fr 1.1fr;
       gap:22px;
       align-items:center;
     }
-    .photo{
+    .portrait{
       border-radius:26px;
       overflow:hidden;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+      box-shadow:0 24px 70px rgba(20,18,22,.12);
       position:relative;
     }
-    .photo::after{
+    .portrait img{width:100%; height:430px; object-fit:cover}
+    .portrait::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(0deg, rgba(15,15,16,.55), transparent 45%);
+      background:linear-gradient(0deg, rgba(20,18,22,.28), transparent 45%);
       pointer-events:none;
     }
-    .photo img{width:100%; height:420px; object-fit:cover}
 
-    /* Gallery */
-    .gallery{
-      padding:18px 0 4px;
+    /* Gallery as real grid (not strip) */
+    .grid-2{
       display:grid;
-      gap:14px;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:start;
     }
-    .gallery-strip{
+    .gallery-grid{
       display:grid;
-      grid-auto-flow:column;
-      grid-auto-columns: minmax(220px, 1fr);
-      gap:14px;
-      overflow:auto;
-      padding:6px 2px 14px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
     }
-    .gallery-strip::-webkit-scrollbar{height:8px}
-    .gallery-strip::-webkit-scrollbar-track{background:rgba(255,255,255,.07); border-radius:999px}
-    .gallery-strip::-webkit-scrollbar-thumb{background:rgba(255,77,47,.70); border-radius:999px}
-
-    .tile{
-      scroll-snap-align:start;
-      border-radius:20px;
+    .thumb{
+      border-radius:18px;
       overflow:hidden;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      background:#f0ede6;
       cursor:pointer;
       position:relative;
-      min-height:340px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
-      transition: transform .18s, filter .18s;
+      transition: transform .18s, box-shadow .18s;
+      box-shadow:0 14px 34px rgba(20,18,22,.10);
     }
-    .tile:hover{transform:translateY(-3px); filter:saturate(1.05)}
-    .tile img{
-      width:100%;
-      height:360px;
-      object-fit:cover;
-    }
-    .tile::after{
+    .thumb:hover{transform:translateY(-3px); box-shadow:0 20px 44px rgba(20,18,22,.14)}
+    .thumb img{width:100%; height:160px; object-fit:cover}
+    .thumb::after{
       content:"";
       position:absolute; inset:0;
-      background:
-        radial-gradient(600px 220px at 50% 120%, rgba(0,0,0,.55), transparent 60%);
+      background: radial-gradient(300px 140px at 50% 120%, rgba(20,18,22,.30), transparent 55%);
       pointer-events:none;
     }
 
-    .cta{
-      margin-top:12px;
-      display:flex; justify-content:flex-start;
-    }
+    .cta{margin-top:14px; display:flex}
 
-    /* WhatsApp floating (only one) */
+    /* WhatsApp floating (single) */
     .wa-float{
       position:fixed;
       bottom:22px;
       left:22px;
-      z-index:2200;
+      z-index:2000;
     }
     .wa-float a{
       display:inline-flex; align-items:center; gap:10px;
       background:#25D366;
-      color:#0b0b0c;
+      color:#111;
       padding:14px 16px;
       border-radius:999px;
       font-weight:1000;
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 16px 40px rgba(20,18,22,.18);
+      border:1px solid rgba(255,255,255,.35);
     }
-    .wa-float a:hover{transform:scale(1.03); filter:saturate(1.05)}
+    .wa-float a:hover{transform:scale(1.03)}
     .wa-float i{font-size:1.35rem}
-    .wa-float span{font-weight:1000}
 
     /* Lightbox with navigation */
     .lightbox{
@@ -357,12 +306,11 @@
       box-shadow: 0 30px 90px rgba(0,0,0,.55);
       user-select:none;
       -webkit-user-drag:none;
+      background:#111;
     }
     .lb-close{
-      position:absolute;
-      top:-8px; right:-8px;
-      width:44px; height:44px;
-      border-radius:999px;
+      position:absolute; top:-8px; right:-8px;
+      width:44px; height:44px; border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.10);
       color:#fff;
@@ -370,13 +318,10 @@
       cursor:pointer;
       backdrop-filter: blur(10px);
     }
-    .lb-close:hover{background:rgba(255,255,255,.16)}
     .lb-nav{
       position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:48px; height:48px;
-      border-radius:999px;
+      top:50%; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.10);
       color:#fff;
@@ -384,58 +329,52 @@
       cursor:pointer;
       backdrop-filter: blur(10px);
     }
-    .lb-nav:hover{background:rgba(255,255,255,.16)}
     .lb-prev{left:-6px}
     .lb-next{right:-6px}
     .lb-cap{
       position:absolute;
-      bottom:-8px;
-      left:0; right:0;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
+      bottom:-6px; left:0; right:0;
+      display:flex; justify-content:space-between; gap:10px;
       padding:10px 12px;
-      font-weight:800;
-      color:rgba(244,244,245,.9);
-      font-size:.95rem;
+      font-weight:900;
+      color:rgba(244,244,245,.92);
     }
-    .lb-cap span{opacity:.9}
-    .lb-cap small{opacity:.7; font-weight:700}
+    .lb-cap small{opacity:.75; font-weight:800}
 
-    /* Footer */
     footer{
-      border-top:1px solid var(--line);
-      padding:36px 0;
-      color:rgba(244,244,245,.85);
+      border-top:1px solid rgba(20,18,22,.08);
+      padding:34px 0;
       text-align:center;
+      color:rgba(20,18,22,.75);
     }
-    footer .small{opacity:.6; font-size:.9rem}
 
     /* Responsive */
-    @media (max-width: 940px){
-      .hero-inner{grid-template-columns:1fr}
-      .triple{grid-template-columns:1fr; gap:10px}
-      .grid{grid-template-columns:1fr}
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
       .about{grid-template-columns:1fr}
-      .photo img{height:360px}
+      .grid-2{grid-template-columns:1fr}
+      .portrait img{height:360px}
+      .gallery-grid{grid-template-columns: repeat(2, 1fr)}
     }
     @media (max-width: 560px){
       .nav{display:none}
       .wa-float a span{display:none}
       .wa-float a{padding:14px; border-radius:50%}
+      .gallery-grid{grid-template-columns: repeat(2, 1fr)}
+      .thumb img{height:150px}
       .lb-prev{left:6px}
       .lb-next{right:6px}
     }
     @media (prefers-reduced-motion: reduce){
       *{scroll-behavior:auto}
-      .btn, .tile{transition:none}
-      .btn:hover, .tile:hover{transform:none}
+      .btn, .thumb{transition:none}
+      .btn:hover, .thumb:hover{transform:none}
     }
   </style>
 </head>
 
 <body>
-  <!-- Only one WhatsApp floating button -->
+  <!-- Single floating WhatsApp -->
   <div class="wa-float">
     <a href="https://wa.me/972559952451" target="_blank" rel="noopener" aria-label="דברו איתי בוואטסאפ">
       <i class="fab fa-whatsapp" aria-hidden="true"></i>
@@ -447,7 +386,7 @@
     <div class="container">
       <div class="topbar">
         <a class="brand" href="#top" aria-label="Yot Pizza">
-          <span class="mark" aria-hidden="true"></span>
+          <span class="stamp" aria-hidden="true"></span>
           <span>Yot Pizza</span>
         </a>
         <nav class="nav" aria-label="תפריט">
@@ -460,68 +399,54 @@
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-wrap">
-          <div class="hero-bg" aria-hidden="true"></div>
-
-          <div class="hero-inner">
-            <div>
-              <div class="pill"><span class="dot" aria-hidden="true"></span> אבן. אש. בצק</div>
-              <h1>חוויה איטלקית. בוטיק. אצלכם בבית.</h1>
-              <p class="lead">אני יותם — שף פרטי לאירועים וסדנאות איטלקיות. אוכל אמיתי, שירות חד, ואווירה שמרימה את כל השולחן.</p>
-
-              <div class="cta-row">
-                <a class="btn btn-fire" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
-                <a class="btn" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
-                <!-- One prominent Instagram link -->
-                <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
-                  <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
-                </a>
-              </div>
-            </div>
-
-            <div class="hero-right">
-              <div class="stat">
-                <p style="margin:0;color:rgba(244,244,245,.88)">
-                  <b>מה מקבלים בפועל?</b><br/>
-                  ערב שמרגיש כמו חופשה: בצק בידיים, טאבון לוהט, ומנות שמגיעות לשולחן בדיוק בזמן.
-                </p>
-                <div class="triple" aria-label="אבן אש בצק">
-                  <div class="chip stone"><div class="big">אבן</div><span>דיוק וחומר גלם</span></div>
-                  <div class="chip fire"><div class="big">אש</div><span>חום, קצב, אנרגיה</span></div>
-                  <div class="chip dough"><div class="big">בצק</div><span>טכניקה וחוויה</span></div>
-                </div>
-              </div>
-
-              <div class="stat">
-                <p style="margin:0;color:rgba(244,244,245,.88)">
-                  <b>איך סוגרים?</b><br/>
-                  שולחים הודעה קצרה בוואטסאפ עם תאריך, כמות אנשים ומה בא לכם — ואני חוזר עם הצעה.
-                </p>
-              </div>
-            </div>
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <div class="ribbon" aria-hidden="true"></div>
+          <div class="pill">
+            <b>אבן</b> • <b>אש</b> • <b>בצק</b>
           </div>
-        </div>
+          <h1>חוויה איטלקית שמרגישים בבית</h1>
+          <p class="lead">
+            אני יותם — שף פרטי לאירועי בוטיק וסדנאות איטלקיות. אוכל אמיתי, דיוק בפרטים, ואנרגיה שמרימה את כל השולחן.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-fire" href="#events"><i class="fas fa-utensils" aria-hidden="true"></i> לאירועים</a>
+            <a class="btn" href="#workshops"><i class="fas fa-pizza-slice" aria-hidden="true"></i> לסדנאות</a>
+            <!-- one prominent Instagram -->
+            <a class="btn btn-insta" href="https://www.instagram.com/yot_pizza" target="_blank" rel="noopener">
+              <i class="fab fa-instagram" aria-hidden="true"></i> אינסטגרם
+            </a>
+          </div>
+        </section>
+
+        <aside class="hero-image" aria-label="תמונת פתיח">
+          <div class="overlay">
+            <div class="k">ערב שמחבר אנשים דרך טעם</div>
+            <small>חומרי גלם • טאבון • שירות מוקפד</small>
+          </div>
+        </aside>
       </div>
-    </section>
+
+      <div class="slash" aria-hidden="true"></div>
+    </div>
 
     <!-- ABOUT -->
     <section id="about" class="section">
       <div class="container">
         <div class="card">
           <div class="card-inner about">
-            <div class="photo">
-              <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async">
+            <div class="portrait">
+              <img src="profile.jpg" alt="יותם — שף פרטי" loading="lazy" decoding="async" />
             </div>
             <div>
               <div class="title">
-                <div class="badge"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+                <div class="icon"><i class="fas fa-leaf" aria-hidden="true" style="color:var(--olive)"></i></div>
                 <h2>נעים להכיר, יותם</h2>
               </div>
-              <p style="color:rgba(244,244,245,.88)">
+              <p style="color:rgba(20,18,22,.82)">
                 התשוקה שלי היא לחבר בין אנשים דרך אוכל איטלקי אמיתי. המטבח עבורי הוא לא רק מקום עבודה,
                 אלא מגרש משחקים של טעמים, ריחות וזכרונות.
               </p>
@@ -530,7 +455,6 @@
                 מהקמח, דרך העגבניות ועד לפרמזן.
               </p>
 
-              <!-- CTA at end of section -->
               <div class="cta">
                 <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%91%D7%90%20%D7%9C%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%94%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
                   דברו איתי בוואטסאפ
@@ -545,14 +469,14 @@
     <!-- EVENTS -->
     <section id="events" class="section" style="padding-top:0">
       <div class="container">
-        <div class="grid">
+        <div class="grid-2">
           <div class="card">
             <div class="card-inner">
               <div class="title">
-                <div class="badge"><i class="fas fa-utensils" aria-hidden="true"></i></div>
+                <div class="icon"><i class="fas fa-utensils" aria-hidden="true" style="color:var(--tomato)"></i></div>
                 <h2>אירועי שף פרטיים</h2>
               </div>
-              <p style="color:rgba(244,244,245,.88)">
+              <p style="color:rgba(20,18,22,.82)">
                 אני מביא את האותנטיות של איטליה ישירות אליכם, בלי פילטרים.
                 עם חומרי הגלם הכי טריים שיש, טאבון לוהט וצוות שבא לעבוד עם הנשמה —
                 אנחנו נרים לכם אירוע מטורף.
@@ -562,7 +486,6 @@
                 כדי שאתם תוכלו פשוט ליהנות.
               </p>
 
-              <!-- CTA at end of section -->
               <div class="cta">
                 <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%99%D7%A7%D7%AA%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A%20%D7%9C%D7%90%D7%99%D7%A8%D7%95%D7%A2%20%D7%A9%D7%A3" target="_blank" rel="noopener">
                   בדיקת תאריך לאירוע
@@ -573,35 +496,29 @@
 
           <div class="card">
             <div class="card-inner">
-              <div class="gallery" aria-label="גלריית אירועים">
-                <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
-                  <div>
-                    <div class="title" style="margin-bottom:4px">
-                      <div class="badge"><i class="fas fa-images" aria-hidden="true"></i></div>
-                      <h2 style="margin:0">תמונות מהאירועים</h2>
-                    </div>
-                    <p style="margin:0;color:rgba(244,244,245,.65);font-size:.95rem">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
-                  </div>
-                </div>
+              <div class="title" style="margin-bottom:6px">
+                <div class="icon"><i class="fas fa-images" aria-hidden="true"></i></div>
+                <h2 style="margin:0">תמונות מהאירועים</h2>
+              </div>
+              <p style="margin:0 0 12px;color:rgba(20,18,22,.68)">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
 
-                <div class="gallery-strip" id="eventsStrip">
-                  <!-- event1..event15 -->
-                  <div class="tile" data-group="events" data-index="0"><img src="event1.jpg"  alt="אירוע 1"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="1"><img src="event2.jpg"  alt="אירוע 2"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="2"><img src="event3.jpg"  alt="אירוע 3"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="3"><img src="event4.jpg"  alt="אירוע 4"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="4"><img src="event5.jpg"  alt="אירוע 5"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="5"><img src="event6.jpg"  alt="אירוע 6"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="6"><img src="event7.jpg"  alt="אירוע 7"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="7"><img src="event8.jpg"  alt="אירוע 8"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="8"><img src="event9.jpg"  alt="אירוע 9"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="9"><img src="event10.jpg" alt="אירוע 10" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="10"><img src="event11.jpg" alt="אירוע 11" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="11"><img src="event12.jpg" alt="אירוע 12" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="12"><img src="event13.jpg" alt="אירוע 13" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="13"><img src="event14.jpg" alt="אירוע 14" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="events" data-index="14"><img src="event15.jpg" alt="אירוע 15" loading="lazy" decoding="async"></div>
-                </div>
+              <div class="gallery-grid" aria-label="גלריית אירועים">
+                <!-- event1..event15 -->
+                <div class="thumb" data-group="events" data-index="0"><img src="event1.jpg" alt="אירוע 1" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="1"><img src="event2.jpg" alt="אירוע 2" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="2"><img src="event3.jpg" alt="אירוע 3" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="3"><img src="event4.jpg" alt="אירוע 4" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="4"><img src="event5.jpg" alt="אירוע 5" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="5"><img src="event6.jpg" alt="אירוע 6" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="6"><img src="event7.jpg" alt="אירוע 7" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="7"><img src="event8.jpg" alt="אירוע 8" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="8"><img src="event9.jpg" alt="אירוע 9" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="9"><img src="event10.jpg" alt="אירוע 10" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="10"><img src="event11.jpg" alt="אירוע 11" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="11"><img src="event12.jpg" alt="אירוע 12" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="12"><img src="event13.jpg" alt="אירוע 13" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="13"><img src="event14.jpg" alt="אירוע 14" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="events" data-index="14"><img src="event15.jpg" alt="אירוע 15" loading="lazy" decoding="async"></div>
               </div>
             </div>
           </div>
@@ -612,14 +529,14 @@
     <!-- WORKSHOPS -->
     <section id="workshops" class="section" style="padding-top:0">
       <div class="container">
-        <div class="grid">
+        <div class="grid-2">
           <div class="card">
             <div class="card-inner">
               <div class="title">
-                <div class="badge"><i class="fas fa-pizza-slice" aria-hidden="true"></i></div>
+                <div class="icon"><i class="fas fa-pizza-slice" aria-hidden="true" style="color:var(--olive)"></i></div>
                 <h2>סדנאות איטלקיות</h2>
               </div>
-              <p style="color:rgba(244,244,245,.88)">
+              <p style="color:rgba(20,18,22,.82)">
                 אם אתם רוצים לחוות את איטליה לערב אחד – הגעתם למקום הנכון.
                 הסדנאות שלי הן חוויה שלמה של יצירה, יין ואוכל מעולה.
               </p>
@@ -629,7 +546,6 @@
                 ערב שכולו טעמים, ריחות וכיף.
               </p>
 
-              <!-- CTA at end of section -->
               <div class="cta">
                 <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%91%D7%90%20%D7%9C%D7%99%20%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%A1%D7%93%D7%A0%D7%94" target="_blank" rel="noopener">
                   שריינו סדנה
@@ -640,34 +556,28 @@
 
           <div class="card">
             <div class="card-inner">
-              <div class="gallery" aria-label="גלריית סדנאות">
-                <div style="display:flex;justify-content:space-between;align-items:end;gap:12px">
-                  <div>
-                    <div class="title" style="margin-bottom:4px">
-                      <div class="badge"><i class="fas fa-camera" aria-hidden="true"></i></div>
-                      <h2 style="margin:0">תמונות מהסדנאות</h2>
-                    </div>
-                    <p style="margin:0;color:rgba(244,244,245,.65);font-size:.95rem">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
-                  </div>
-                </div>
+              <div class="title" style="margin-bottom:6px">
+                <div class="icon"><i class="fas fa-camera" aria-hidden="true"></i></div>
+                <h2 style="margin:0">תמונות מהסדנאות</h2>
+              </div>
+              <p style="margin:0 0 12px;color:rgba(20,18,22,.68)">לחצו על תמונה למסך מלא • ואז אפשר לדפדף</p>
 
-                <div class="gallery-strip" id="workshopsStrip">
-                  <!-- workshop1..workshop14 -->
-                  <div class="tile" data-group="workshops" data-index="0"><img src="workshop1.jpg"  alt="סדנה 1"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="1"><img src="workshop2.jpg"  alt="סדנה 2"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="2"><img src="workshop3.jpg"  alt="סדנה 3"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="3"><img src="workshop4.jpg"  alt="סדנה 4"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="4"><img src="workshop5.jpg"  alt="סדנה 5"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="5"><img src="workshop6.jpg"  alt="סדנה 6"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="6"><img src="workshop7.jpg"  alt="סדנה 7"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="7"><img src="workshop8.jpg"  alt="סדנה 8"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="8"><img src="workshop9.jpg"  alt="סדנה 9"  loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="9"><img src="workshop10.jpg" alt="סדנה 10" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="10"><img src="workshop11.jpg" alt="סדנה 11" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="11"><img src="workshop12.jpg" alt="סדנה 12" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="12"><img src="workshop13.jpg" alt="סדנה 13" loading="lazy" decoding="async"></div>
-                  <div class="tile" data-group="workshops" data-index="13"><img src="workshop14.jpg" alt="סדנה 14" loading="lazy" decoding="async"></div>
-                </div>
+              <div class="gallery-grid" aria-label="גלריית סדנאות">
+                <!-- workshop1..workshop14 -->
+                <div class="thumb" data-group="workshops" data-index="0"><img src="workshop1.jpg" alt="סדנה 1" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="1"><img src="workshop2.jpg" alt="סדנה 2" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="2"><img src="workshop3.jpg" alt="סדנה 3" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="3"><img src="workshop4.jpg" alt="סדנה 4" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="4"><img src="workshop5.jpg" alt="סדנה 5" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="5"><img src="workshop6.jpg" alt="סדנה 6" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="6"><img src="workshop7.jpg" alt="סדנה 7" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="7"><img src="workshop8.jpg" alt="סדנה 8" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="8"><img src="workshop9.jpg" alt="סדנה 9" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="9"><img src="workshop10.jpg" alt="סדנה 10" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="10"><img src="workshop11.jpg" alt="סדנה 11" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="11"><img src="workshop12.jpg" alt="סדנה 12" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="12"><img src="workshop13.jpg" alt="סדנה 13" loading="lazy" decoding="async"></div>
+                <div class="thumb" data-group="workshops" data-index="13"><img src="workshop14.jpg" alt="סדנה 14" loading="lazy" decoding="async"></div>
               </div>
             </div>
           </div>
@@ -681,13 +591,14 @@
         <div class="card">
           <div class="card-inner">
             <div class="title">
-              <div class="badge"><i class="fas fa-message" aria-hidden="true"></i></div>
+              <div class="icon"><i class="fas fa-message" aria-hidden="true" style="color:var(--tomato)"></i></div>
               <h2>יצירת קשר</h2>
             </div>
-            <p style="color:rgba(244,244,245,.88)">הכי פשוט: שולחים וואטסאפ עם תאריך, כמות אנשים ומה בא לכם – ואני חוזר עם הצעה.</p>
-            <p>טלפון: <span style="color:rgba(244,244,245,.88);font-weight:800">055-9952451</span></p>
+            <p style="color:rgba(20,18,22,.82)">
+              הכי פשוט: שולחים וואטסאפ עם תאריך, כמות אנשים ומה בא לכם – ואני חוזר עם הצעה.
+            </p>
+            <p>טלפון: <b style="color:rgba(20,18,22,.88)">055-9952451</b></p>
 
-            <!-- CTA at end of section -->
             <div class="cta">
               <a class="btn btn-fire" href="https://wa.me/972559952451?text=%D7%94%D7%99%D7%99%20%D7%99%D7%95%D7%AA%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%94%D7%AA%D7%90%D7%9D%20%D7%AA%D7%90%D7%A8%D7%99%D7%9A" target="_blank" rel="noopener">
                 שלחו הודעה עכשיו
@@ -700,10 +611,10 @@
 
     <footer>
       <div class="container">
-        <div style="display:grid;gap:10px;justify-items:center">
-          <div style="font-weight:900;font-size:1.05rem">Yot Pizza</div>
-          <div style="opacity:.85">055-9952451</div>
-          <div class="small">© 2025 כל הזכויות שמורות</div>
+        <div style="display:grid;gap:8px;justify-items:center">
+          <div style="font-weight:1000">Yot Pizza</div>
+          <div style="opacity:.8">055-9952451</div>
+          <div style="opacity:.6;font-size:.9rem">© 2025 כל הזכויות שמורות</div>
         </div>
       </div>
     </footer>
@@ -717,7 +628,7 @@
       <button class="lb-nav lb-next" type="button" aria-label="תמונה הבאה"><i class="fas fa-chevron-left"></i></button>
 
       <img class="lb-img" id="lbImg" alt="" />
-      <div class="lb-cap" id="lbCap">
+      <div class="lb-cap">
         <span id="lbTitle">תמונה</span>
         <small id="lbCount">1 / 1</small>
       </div>
@@ -725,16 +636,9 @@
   </div>
 
   <script>
-    // Image groups (keeps your exact filenames)
     const groups = {
-      events: Array.from({length: 15}, (_, i) => ({
-        src: `event${i+1}.jpg`,
-        alt: `אירוע ${i+1}`
-      })),
-      workshops: Array.from({length: 14}, (_, i) => ({
-        src: `workshop${i+1}.jpg`,
-        alt: `סדנה ${i+1}`
-      }))
+      events: Array.from({length: 15}, (_, i) => ({ src: `event${i+1}.jpg`, alt: `אירוע ${i+1}` })),
+      workshops: Array.from({length: 14}, (_, i) => ({ src: `workshop${i+1}.jpg`, alt: `סדנה ${i+1}` }))
     };
 
     const lb = document.getElementById('lightbox');
@@ -751,15 +655,13 @@
     const render = () => {
       const items = groups[currentGroup];
       const item = items[currentIndex];
-
       lbImg.src = item.src;
       lbImg.alt = item.alt;
-
       lbTitle.textContent = item.alt;
       lbCount.textContent = `${currentIndex + 1} / ${items.length}`;
     };
 
-    const openLightbox = (group, index) => {
+    const openLB = (group, index) => {
       currentGroup = group;
       currentIndex = index;
       render();
@@ -768,7 +670,7 @@
       btnClose.focus();
     };
 
-    const closeLightbox = () => {
+    const closeLB = () => {
       lb.setAttribute('aria-hidden', 'true');
       lbImg.src = '';
       document.body.style.overflow = '';
@@ -786,71 +688,57 @@
       render();
     };
 
-    // Hook tiles
-    document.querySelectorAll('.tile').forEach(tile => {
-      tile.addEventListener('click', () => {
-        const group = tile.getAttribute('data-group');
-        const idx = Number(tile.getAttribute('data-index')) || 0;
-        openLightbox(group, idx);
+    document.querySelectorAll('.thumb').forEach(el => {
+      el.addEventListener('click', () => {
+        const group = el.getAttribute('data-group');
+        const idx = Number(el.getAttribute('data-index')) || 0;
+        openLB(group, idx);
       });
     });
 
-    // Controls
-    btnClose.addEventListener('click', closeLightbox);
+    btnClose.addEventListener('click', closeLB);
     btnNext.addEventListener('click', next);
     btnPrev.addEventListener('click', prev);
 
-    // Click backdrop to close
     lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLightbox();
+      if (e.target === lb) closeLB();
     });
 
-    // Keyboard
     document.addEventListener('keydown', (e) => {
       if (lb.getAttribute('aria-hidden') === 'true') return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') next();      // left arrow = next (RTL friendly feel)
-      if (e.key === 'ArrowRight') prev();     // right arrow = prev
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') next();      // RTL-friendly feel
+      if (e.key === 'ArrowRight') prev();
     });
 
     // Touch swipe
-    let startX = 0;
-    let startY = 0;
-    let isSwiping = false;
+    let startX = 0, startY = 0, isSwiping = false;
 
-    const onTouchStart = (e) => {
+    lb.addEventListener('touchstart', (e) => {
       if (lb.getAttribute('aria-hidden') === 'true') return;
       const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
+      startX = t.clientX; startY = t.clientY;
       isSwiping = true;
-    };
+    }, {passive:true});
 
-    const onTouchMove = (e) => {
+    lb.addEventListener('touchmove', (e) => {
       if (!isSwiping) return;
-      // prevent accidental vertical scroll inside modal
       const t = e.touches[0];
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) e.preventDefault();
-    };
+    }, {passive:false});
 
-    const onTouchEnd = (e) => {
+    lb.addEventListener('touchend', (e) => {
       if (!isSwiping) return;
       isSwiping = false;
       const t = e.changedTouches[0];
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
-
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-        if (dx < 0) next();  // swipe left
-        else prev();         // swipe right
+        if (dx < 0) next(); else prev();
       }
-    };
-
-    lb.addEventListener('touchstart', onTouchStart, {passive:true});
-    lb.addEventListener('touchmove', onTouchMove, {passive:false});
-    lb.addEventListener('touchend', onTouchEnd, {passive:true});
+    }, {passive:true});
   </script>
 </body>
 </html>
