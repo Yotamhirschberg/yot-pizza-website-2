@@ -381,7 +381,8 @@
       .prev{left:6px}
       .next{right:6px}
     }
-/* --- תיקון זום לגלריה --- */
+/* --- תיקון סופי לגלריה: מתיחה חכמה --- */
+
 .modal-frame {
     display: flex !important;
     flex-direction: column;
@@ -389,30 +390,28 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* מוודא שהרקע כהה */
 }
 
 .modal-content {
-    /* מבטל מתיחה לא רצויה */
-    width: auto !important;
-    height: auto !important;
+    /* השינוי הגדול: מכריח את התמונה לתפוס מקום */
+    width: 100% !important;
+    height: 80vh !important; /* תופס 80% מגובה המסך */
     
-    /* מוודא שהתמונה לא תהיה גדולה מהמסך */
-    max-width: 95vw !important;
-    max-height: 85vh !important;
-    
-    /* שומר על פרופורציה */
+    /* מוודא שהתמונה נמתחת בפרופורציה ולא נמרחת */
     object-fit: contain !important;
+    
+    max-width: 95vw !important;
     margin: 0 auto;
+    background-color: transparent; /* מונע מסגרת לבנה אם יש */
 }
 
-/* מוודא שהכיתוב לא בורח למטה */
+/* סידור הטקסט למטה */
 .caption {
     width: 100%;
     text-align: center;
-    margin-top: 10px;
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
+    color: white;
+    margin-top: 15px;
 }
 
 
