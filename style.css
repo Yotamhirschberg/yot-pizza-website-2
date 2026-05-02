@@ -44,7 +44,7 @@ img { display: block; max-width: 100%; height: auto; }
   position: relative; min-height: 86vh;
   display: flex; align-items: center; justify-content: center; text-align: center;
   color: var(--milk);
-  background-image: url('hero-bg.jpg');
+  background-image: url('https://raw.githubusercontent.com/Yotamhirschberg/yot-pizza-website/main/hero-bg.jpg');
   background-size: cover; background-position: center;
 }
 .hero-overlay {
